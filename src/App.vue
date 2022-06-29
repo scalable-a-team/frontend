@@ -1,20 +1,13 @@
 <template>
   <div class="">
-    <!-- <ProductListing :productList="productList.product1" /> -->
-    <!-- <CustomerReview /> -->
     <router-view :productList="productList.product1"></router-view>
   </div>
 </template>
 
 <script>
-// import ProductListing from "./views/ProductListing";
-// import CustomerReview from "./views/CustomerReview.vue";
 export default {
   name: "App",
-  components: {
-    // ProductListing,
-    // CustomerReview,
-  },
+  components: {},
   data() {
     return {
       productList: {
@@ -26,12 +19,14 @@ export default {
           desc: "blah blah blah",
           imageUrls: [
             "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
+            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
+            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
+            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
+            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
+            // "",
+            // "",
+            // "",
           ],
         },
         product2: {
