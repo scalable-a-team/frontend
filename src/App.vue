@@ -27,7 +27,6 @@ export default {
             "https://imageio.forbes.com/specials-images/imageserve/5f1a62d942a6387efb759310/What-Can-3D-Printing-Be-Used-For--Here-Are-10-Amazing-Examples/960x0.jpg?format=jpg&width=960",
             "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
             "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
-            "https://cdn.thewirecutter.com/wp-content/media/2021/08/3dprinter-2048px-9383.jpg",
           ],
         },
         product2: {

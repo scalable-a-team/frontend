@@ -6,37 +6,52 @@
       <h1 class="font-bold">Order by</h1>
       <h1>Name</h1>
       <div class="ml-5 text-sm">
-        <p>A-Z</p>
-        <p>Z-A</p>
+        <HighlightedText @click="sortAZ(false)" text="A-Z" />
+        <HighlightedText @click="sortAZ(true)" text="Z-A" />
       </div>
       <h1>Date</h1>
       <div class="ml-5 text-sm">
-        <p>Most recent</p>
-        <p>Oldest first</p>
+        <HighlightedText text="Most recent" />
+        <HighlightedText text="Oldest first" />
       </div>
       <h1>Amount</h1>
       <div class="ml-5 text-sm">
-        <p>High to Low</p>
-        <p>Low to High</p>
+        <HighlightedText @click="sortAmount(true)" text="High to Low" />
+        <HighlightedText @click="sortAmount(false)" text="Low to High" />
       </div>
     </div>
     <div class="flex-1">
       <!-- Search Bar -->
-      <div class="relative z-0 px-2 mx-5 w-full group bg-gray-600 rounded-lg">
-        <div class="flex-col justify-">
+      <div class="px-2 mx-5 h-full w-full group bg-gray-600 rounded-lg">
+        <div class="flex justify-center">
+          <div class="w-64 relative group mt-10">
+            <input
+              type="text"
+              required
+              class="bg-transparent border w-full rounded-2xl h-10 px-4 text-sm peer outline-none"
+              v-model="searchInput"
+            />
+            <label
+              class="transform transition-all absolute top-0 left-2 h-full flex items-center pl-2 text-sm group-focus-within:text-xs peer-valid:text-xs group-focus-within:h-1/2 peer-valid:h-1/2 group-focus-within:-translate-y-full peer-valid:-translate-y-full group-focus-within:pl-0 peer-valid:pl-0"
+              >Search order</label
+            >
+          </div>
+        </div>
+        <!-- <div class="flex-col">
           <label
             for="first_name"
-            class="font-bold text-[11px] text-white bg-gray-600 relative px-1 top-2 left-3 w-auto group-focus-within:text-red-600"
+            class="font-bold text-[11px] text-white bg-gray-600 relative px-1 top-2 left-3 w-auto group-focus-within:text-gray-100"
           >
             Search Order
           </label>
           <input
             type="text"
-            class="h-10 w-60 text-10 bg-transparent border py-55-rem border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            v-model="searchInput"
+            class="h-10 w-60 text-10 bg-transparent border py-55-rem order-gray-300 text-sm rounded-lg ocus:outline-gray-100 ocus:border-gray-100 block p-2.5 focus:outline-none"
           />
-        </div>
-        <div class="max-w-2xl">
-          <div v-for="order in orders" :key="order.id">
+        </div> -->
+        <div class=" ">
+          <div class="max-w-2xl" v-for="order in filterOrders()" :key="order">
             <StatusCard :order="order" isPending="false" />
           </div>
         </div>
@@ -78,15 +93,16 @@
 
 <script>
 import StatusCard from "../components/StatusCard";
+import HighlightedText from "../components/HighlightedText.vue";
 export default {
   name: "OrderHistory",
   components: {
     StatusCard,
+    HighlightedText,
   },
   data() {
     return {
       searchInput: "",
-      fruits: ["apple", "banana", "orange"],
       orders: [
         {
           customer: {
@@ -95,7 +111,7 @@ export default {
           },
           detail: {
             type: "Laser Gun",
-            amount: "1$",
+            amount: 1,
             dim: "XXX",
           },
         },
@@ -106,18 +122,18 @@ export default {
           },
           detail: {
             type: "Laser Gun",
-            amount: "1$",
+            amount: 2,
             dim: "XXX",
           },
         },
         {
           customer: {
             name: "Rick 0.3",
-            desc: "Where is my gun ?",
+            desc: "Where is my pencil ?",
           },
           detail: {
-            type: "Laser Gun",
-            amount: "1$",
+            type: "Apple pencil",
+            amount: 3,
             dim: "XXX",
           },
         },
@@ -128,12 +144,33 @@ export default {
           },
           detail: {
             type: "Laser Gun",
-            amount: "1$",
+            amount: 4,
             dim: "XXX",
           },
         },
       ],
     };
+  },
+  methods: {
+    filterOrders() {
+      return this.orders.filter((order) =>
+        order.detail.type.toLowerCase().includes(this.searchInput.toLowerCase())
+      );
+    },
+    sortAZ(isReverse) {
+      this.orders.sort(function (a, b) {
+        if (a.detail.type < a.detail.type) return !isReverse ? -1 : 1;
+        else if (a.detail.type > b.detail.type) return !isReverse ? 1 : -1;
+        return 0;
+      });
+    },
+    sortAmount(isReverse) {
+      this.orders.sort(function (a, b) {
+        if (a.detail.amount < a.detail.amount) return !isReverse ? -1 : 1;
+        else if (a.detail.amount > b.detail.amount) return !isReverse ? 1 : -1;
+        return 0;
+      });
+    },
   },
 };
 // import { ref } from "vue";

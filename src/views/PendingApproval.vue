@@ -6,8 +6,8 @@
     <div
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 grid-flow-row"
     >
-      <div v-for="order in orders" :key="order.id">
-        <StatusCard :order="order" isPending="true" />
+      <div v-for="(order, index) in filterApproval()" :key="order.id">
+        <StatusCard :idx="index" :order="order" isPending="true" />
       </div>
     </div>
   </div>
@@ -24,6 +24,7 @@ export default {
     return {
       orders: [
         {
+          isPending: true,
           customer: {
             name: "Rick 0.1",
             desc: "Where is my gun ?",
@@ -35,6 +36,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.2",
             desc: "Where is my gun ?",
@@ -46,6 +48,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.3",
             desc: "Where is my gun ?",
@@ -57,6 +60,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.4",
             desc: "Where is my gun ?",
@@ -69,6 +73,14 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    filterApproval() {
+      return this.orders.filter((order) => order.isPending);
+    },
+    pendFalse(idx) {
+      this.order[idx].isPending = false;
+    },
   },
 };
 </script>

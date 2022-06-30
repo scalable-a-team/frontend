@@ -18,7 +18,7 @@ const routes = [
     component: ProductListing,
   },
   {
-    path: "/seller",
+    path: "/seller-profile",
     name: "SellerProfile",
     component: SellerProfile,
   },

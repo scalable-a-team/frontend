@@ -23,7 +23,10 @@
       </p>
     </div>
     <div class="flex justify-evenly" v-if="isPending === 'true'">
-      <button class="rounded-lg bg-green-400 p-3 w-24 hover:opacity-60">
+      <button
+        @click="test"
+        class="rounded-lg bg-green-400 p-3 w-24 hover:opacity-60"
+      >
         Approval
       </button>
       <button class="rounded-lg bg-red-500 p-3 w-24 hover:opacity-60">
@@ -46,12 +49,18 @@ export default {
       required: true,
     },
     order: Object,
+    idx: Number,
   },
   data() {
     return {
       customer: this.order.customer,
       detail: this.order.detail,
     };
+  },
+  methods: {
+    test() {
+      console.log(this.idx);
+    },
   },
 };
 </script>
