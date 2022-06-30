@@ -14,19 +14,19 @@
       />
     </div>
     <div class="mb-10" v-for="user in this.users" :key="user.id">
-      <ReviewProduct :user="user" />
+      <ReviewBubble :user="user" />
     </div>
   </div>
 </template>
 
 <script>
 import StarRating from "vue-star-rating";
-import ReviewProduct from "../components/ReviewBubble.vue";
+import ReviewBubble from "../components/ReviewBubble.vue";
 export default {
   name: "CustomerReview",
   components: {
     StarRating,
-    ReviewProduct,
+    ReviewBubble,
   },
   data() {
     return {
@@ -45,7 +45,7 @@ export default {
         },
         {
           name: "Ben",
-          review: "Trash!",
+          review: " bro, what are you doing ",
           imageUrl: "",
           rating: 0,
         },
