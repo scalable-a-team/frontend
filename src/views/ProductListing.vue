@@ -1,18 +1,19 @@
 <template>
-  <div class="divide-y">
+  <div>Product Listing</div>
+  <!-- <div class="divide-y"> -->
+  <!-- <Product :productList="productList" />
     <Product :productList="productList" />
     <Product :productList="productList" />
-    <Product :productList="productList" />
-    <Product :productList="productList" />
-  </div>
+    <Product :productList="productList" /> -->
+  <!-- </div> -->
 </template>
 
 <script>
-import Product from "../components/Product";
+// import Product from "../components/Product";
 export default {
   name: "ProductListing",
   components: {
-    Product,
+    // Product,
   },
   props: {
     productList: Object,

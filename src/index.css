@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
-    @apply bg-gradient-to-r from-gray-800 to-gray-400 text-white;
+    @apply bg-[#161F31] text-white;
+    font-family: Nunito Sans, sans-serif;
   }
 }
