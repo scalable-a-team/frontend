@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-green-00 w-full sticky top-0 h-32 border-b border-[#232D40] flex flex-row items-center"
+    class="w-full sticky top-0 z-50 h-32 border-b border-[#232D40] flex flex-row items-center"
   >
     <!-- Logo -->
     <div class="basis-3/5 ml-28">
@@ -55,21 +55,23 @@
             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-[#1F2A44] ring-1 ring-black ring-opacity-5 focus:outline-none"
           >
             <div class="py-1">
-              <div class="relative">
-                <UserIcon
-                  class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"
-                />
-                <MenuItem v-slot="{ active }">
-                  <a
-                    href="#"
-                    :class="[
-                      active ? 'bg-gray-700 text-white' : 'text-white',
-                      'block pl-10 px-4 py-2 text-sm',
-                    ]"
-                    >My Profile</a
-                  >
-                </MenuItem>
-              </div>
+              <router-link to="profile">
+                <div class="relative">
+                  <UserIcon
+                    class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"
+                  />
+                  <MenuItem v-slot="{ active }">
+                    <a
+                      href="#"
+                      :class="[
+                        active ? 'bg-gray-700 text-white' : 'text-white',
+                        'block pl-10 px-4 py-2 text-sm',
+                      ]"
+                      >My Profile</a
+                    >
+                  </MenuItem>
+                </div>
+              </router-link>
               <div class="relative">
                 <BellIcon
                   class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"

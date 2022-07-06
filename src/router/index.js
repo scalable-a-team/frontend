@@ -6,11 +6,17 @@ import InProgress from "../views/InProgress";
 import Transit from "../views/Transit";
 import OrderHistory from "../views/OrderHistory";
 import SellerProfile from "../views/SellerProfile";
+import ProductEditing from "../views/ProductEditing";
 const routes = [
   {
     path: "/customer-review",
     name: "CustomerReview",
     component: CustomerReview,
+  },
+  {
+    path: "/product-xxx",
+    name: "ProductEditing",
+    component: ProductEditing,
   },
   {
     path: "/",

@@ -1,8 +1,9 @@
 <template>
-  <div class="my-20">
-    <div>
+  <div class="m-10 bg-white w-full h-[28rem]">
+    <p>Pending</p>
+    <!-- <div>
       <h1 class="text-center text-2xl mb-10">Pending Approval</h1>
-    </div>
+    </div> -->
     <div
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 grid-flow-row"
     >

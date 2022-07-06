@@ -7,18 +7,26 @@
         class="absolute left-1 w-24 h-10 bg-gradient-to-r from-[#1F3E51]"
       ></div>
       <div class="flex space-x-3">
-        <h1 class="text-white">Products</h1>
+        <router-link to="/">
+          <div class="cursor-pointer">
+            <h1 class="text-white">Products</h1>
+          </div>
+        </router-link>
         <p class="border rounded-full px-3 border-[#0C4550]">
           <span class="text-[#44BFD7] text-[12px] font-semibold">52</span>
         </p>
       </div>
     </div>
-    <div>
-      <h1 class="text-[#9DA5B4]">Product Status</h1>
-    </div>
-    <div>
-      <h1 class="text-[#9DA5B4]">Order History</h1>
-    </div>
+    <router-link to="pending-approval">
+      <div class="cursor-pointer">
+        <h1 class="text-[#9DA5B4]">Product Status</h1>
+      </div>
+    </router-link>
+    <router-link to="order-history">
+      <div class="cursor-pointer">
+        <h1 class="text-[#9DA5B4]">Order History</h1>
+      </div>
+    </router-link>
     <div class="divide-y-2"></div>
   </div>
 </template>
@@ -26,6 +34,11 @@
 <script>
 export default {
   name: "LeftbarMain",
+  methods: {
+    toggle(item) {
+      console.log(item);
+    },
+  },
 };
 </script>
 
