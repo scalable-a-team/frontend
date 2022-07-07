@@ -13,7 +13,6 @@
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
     "vue-awesome-paginate": "^0.0.9",
-    "vue-carousel": "^0.18.0",
     "vue-router": "^4.0.16",
     "vue-star-rating": "^2.1.0",
     "vuex": "^4.0.2"

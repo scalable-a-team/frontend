@@ -1,19 +1,22 @@
 <template>
   <div class="">
     <!-- Nav Bar -->
-    <Navbar />
+    <NavBar />
     <!-- <router-view ></router-view> -->
     <!-- <SellerProfile /> -->
 
     <!-- Main Div -->
     <div class="flex">
       <!-- Left Bar -->
-      <Leftbar />
+      <SideBar />
       <div class="w-full">
         <!-- {{ productList.product1 }} -->
         <router-view :productList="productList.product1"></router-view>
       </div>
       <!-- Product Listing -->
+    </div>
+    <div>
+      <Pagination />
     </div>
     <!-- Pagination -->
     <!-- <Pagination /> -->
@@ -23,16 +26,17 @@
 <script>
 // import SellerProfile from "./views/SellerProfile.vue";
 // import ProductListing from "./views/ProductListing.vue";
-import Navbar from "./views/Navbar.vue";
-import Leftbar from "./views/Leftbar.vue";
+import NavBar from "./views/NavBar.vue";
+import SideBar from "./views/SideBar.vue";
 // import Pagination from "./views/Pagination";
 export default {
   name: "App",
   components: {
     // ProductListing,
-    Navbar,
-    Leftbar,
+    NavBar,
+    SideBar,
     // Pagination,
+
     // SellerProfile,
   },
   data() {

@@ -7,8 +7,9 @@
       <Product :productList="productList" />
       <Product :productList="productList" />
     </div>
-
-    <Pagination />
+    <div class="flex-end">
+      <Pagination />
+    </div>
   </div>
   <!-- <div class="divide-y"> -->
 </template>

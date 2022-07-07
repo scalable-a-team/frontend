@@ -1,7 +1,9 @@
 <template>
   <transition :name="dir">
-    <div v-show="visibleSlide <= index && index < visibleSlide + 4">
-      <!-- class="absolute top-0 right-0 bottom-0 left-0" -->
+    <div
+      class="absolute top-0 right-0 bottom-0 left-0"
+      v-show="visibleSlide <= index && index < visibleSlide + 4"
+    >
       <slot></slot>
     </div>
   </transition>
@@ -26,7 +28,7 @@ export default {
 }
 @keyframes image-left-in {
   from {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
   to {
     transform: translateX(0);
@@ -34,10 +36,10 @@ export default {
 }
 @keyframes image-left-out {
   from {
-    transform: translateX(0%);
+    transform: transateX(0%);
   }
   to {
-    transform: translateX(50%);
+    transform: translateX(100%);
   }
 }
 
@@ -52,12 +54,12 @@ export default {
     transform: translateX(0%);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 @keyframes image-right-in {
   from {
-    transform: translateX(50%);
+    transform: translateX(100%);
   }
   to {
     transform: translateX(0);

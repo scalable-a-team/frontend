@@ -24,7 +24,7 @@
 <script>
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/vue/outline";
 export default {
-  name: "CarouselL",
+  name: "Carousel",
   components: {
     ChevronRightIcon,
     ChevronLeftIcon,

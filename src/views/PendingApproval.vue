@@ -1,25 +1,29 @@
 <template>
-  <div class="m-10 bg-white w-full h-[28rem]">
-    <p>Pending</p>
-    <!-- <div>
-      <h1 class="text-center text-2xl mb-10">Pending Approval</h1>
-    </div> -->
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 grid-flow-row"
-    >
+  <div class="m-10 w-full h-[28rem]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
       <div v-for="(order, index) in filterApproval()" :key="order.id">
-        <StatusCard :idx="index" :order="order" isPending="true" />
+        <StatusCard
+          disable="true"
+          :idx="index"
+          :order="order"
+          isPending="true"
+        />
       </div>
+    </div>
+    <div>
+      <Pagination />
     </div>
   </div>
 </template>
 
 <script>
 import StatusCard from "../components/StatusCard";
+import Pagination from "./Pagination.vue";
 export default {
   name: "PendingApproval",
   components: {
     StatusCard,
+    Pagination,
   },
   data() {
     return {

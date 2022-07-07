@@ -1,29 +1,30 @@
 <template>
-  <div class="my-20">
-    <div>
-      <h1 class="text-center text-2xl mb-10">In Progress</h1>
-    </div>
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 grid-flow-row"
-    >
-      <div v-for="order in orders" :key="order.id">
-        <StatusCard :order="order" isPending="false" />
+  <div class="m-10 w-full h-[28rem]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+      <div v-for="(order, index) in filterApproval()" :key="order.id">
+        <StatusCard :idx="index" :order="order" />
       </div>
+    </div>
+    <div>
+      <Pagination />
     </div>
   </div>
 </template>
 
 <script>
 import StatusCard from "../components/StatusCard";
+import Pagination from "./Pagination.vue";
 export default {
-  name: "InProgress",
+  name: "PendingApproval",
   components: {
     StatusCard,
+    Pagination,
   },
   data() {
     return {
       orders: [
         {
+          isPending: true,
           customer: {
             name: "Rick 0.1",
             desc: "Where is my gun ?",
@@ -35,6 +36,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.2",
             desc: "Where is my gun ?",
@@ -46,6 +48,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.3",
             desc: "Where is my gun ?",
@@ -57,6 +60,7 @@ export default {
           },
         },
         {
+          isPending: true,
           customer: {
             name: "Rick 0.4",
             desc: "Where is my gun ?",
@@ -69,6 +73,14 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    filterApproval() {
+      return this.orders.filter((order) => order.isPending);
+    },
+    pendFalse(idx) {
+      this.order[idx].isPending = false;
+    },
   },
 };
 </script>

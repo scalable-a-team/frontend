@@ -1,20 +1,18 @@
 <template>
-  <div
-    class="relative overflow-hidden space-x-52 h-36 full flex justify-center bg-black"
-  >
+  <div class="relative overflow-hidden w-full flex justify-center">
     <slot></slot>
-    <!-- <div class=""></div> -->
+    <div class="w-[600px]"></div>
     <div class="">
+      <!-- :disabled="visible === 0" -->
       <button
-        :disabled="visible === 0"
-        class="absolute top-6 left-40 flex justify-center items-center rounded-full border-[#12303F] border w-8 h-8 cursor-pointer"
+        class="absolute top-6 left-0 flex justify-center items-center rounded-full border-[#12303F] border w-8 h-8 cursor-pointer"
         @click="prev"
       >
         <ChevronLeftIcon class="h-5 w-5" />
       </button>
       <button
         :disabled="visible >= len - 4"
-        class="absolute top-6 flex justify-center items-center right-[160px] rounded-full border-[#12303F] border w-8 h-8 cursor-pointer"
+        class="absolute top-6 right-0 flex justify-center items-center rounded-full border-[#12303F] border w-8 h-8 cursor-pointer"
         @click="next"
       >
         <ChevronRightIcon class="h-5 w-5" />

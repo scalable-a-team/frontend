@@ -1,5 +1,6 @@
 <template>
-  <div class="md:fixed md:left-0 md:right-0 md:bottom-24 ml-52">
+  <!-- <div class="md:fixed md:left-0 md:right-0 md:ottom-24 ml-52"> -->
+  <div>
     <div>
       <vue-awesome-paginate
         :total-items="50"
@@ -41,35 +42,14 @@ export default {
   },
   methods: {
     onClickHandler(page) {
-      console.log(page);
+      this.$emit("clicked", page);
+      // console.log(page);
     },
   },
 };
 </script>
 
 <style>
-/* .pagination-container {
-  @apply flex space-x-2;
-}
-.paginate-buttons {
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  background-color: rgb(242, 242, 242);
-  border: 1px solid rgb(217, 217, 217);
-  color: black;
-}
-.paginate-buttons:hover {
-}
-.active-page {
-  background-color: #3498db;
-  border: 1px solid #3498db;
-  color: white;
-} */
-/* .active-page:hover {
-  background-color: #2988c8;
-} */
 .btn {
   @apply h-10 w-10 cursor-pointer   mx-1;
 }

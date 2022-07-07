@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "PixAvatar",
+  name: "Avatar",
   props: {
     profile: {
       type: String,

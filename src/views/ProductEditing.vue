@@ -2,7 +2,7 @@
   <div class="m-10 flex flex-row">
     <!-- Product Name and Images -->
     <!-- Review -->
-    <div class="basis-1/2 flex flex-col items-center">
+    <div class="basis-1/2 flex flex-col items-center bg-gray-30">
       <h1 class="text-lg my-5">Product Template</h1>
 
       <!-- <div> -->
@@ -12,10 +12,12 @@
         class="h-70 w-3/4 object-cover rounded-lg"
       />
       <!-- </div> -->
-      <div class="flex mt-10 h-20 justify-center -white">
+      <!-- {{ imageLen() }} -->
+      <div class="flex mt-10 h-20 justify-center -gray-300">
+        <!-- <ImageList /> -->
         <image-carousel
-          @next="next"
-          @prev="prev"
+          @next="imageNext"
+          @prev="imagePrev"
           :visible="visibleSlide"
           :len="images.length"
         >
@@ -23,14 +25,15 @@
             v-for="(image, index) in images"
             :key="image"
             :index="index"
-            :visibleSlide="visibleSlide"
-            :dir="dir"
+            :visibleSlide="imageVisibleSlide"
+            :dir="imageDir"
           >
-            <img
+            <ImageList :index="index" @changeImage="changeImage(image)" />
+            <!-- <img
               @click="changeImg(image)"
               :src="image"
               class="h-20 w-32 object-cover rounded-lg cursor-pointer opacity-50"
-            />
+            /> -->
           </image-carousel-slide>
         </image-carousel>
         <!-- <img
@@ -44,7 +47,7 @@
           class="h-20 object-cover rounded-lg opacity-40"
         /> -->
       </div>
-      <!-- <div class="w-full mt-10">
+      <div class="w-full mt-10">
         <p class="text-start mb-5 ml-24">
           What people liked about this product
         </p>
@@ -76,7 +79,7 @@
             </carousel-slide>
           </carousel>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <!-- Pricing Scheme -->
@@ -99,19 +102,21 @@
 </template>
 
 <script>
-// import Carousel from "@/components/Carousel.vue";
-// import StarRating from "vue-star-rating";
-// import CarouselSlide from "@/components/CarouselSlide.vue";
+import Carousel from "@/components/Carousel.vue";
+import StarRating from "vue-star-rating";
+import CarouselSlide from "@/components/CarouselSlide.vue";
 import ImageCarousel from "@/components/ImageCarousel.vue";
 import ImageCarouselSlide from "@/components/ImageCarouselSlide.vue";
+import ImageList from "@/components/ImageList";
 export default {
   name: "ProductEditing",
   components: {
-    // StarRating,
-    // Carousel,
-    // CarouselSlide,
+    StarRating,
+    Carousel,
+    CarouselSlide,
     ImageCarousel,
     ImageCarouselSlide,
+    ImageList,
   },
   data() {
     return {
@@ -129,6 +134,8 @@ export default {
       ],
       visibleSlide: 0,
       dir: "",
+      imageVisibleSlide: 0,
+      imageDir: "",
       currentImg: "https://picsum.photos/id/237/600/350",
     };
   },
@@ -136,14 +143,30 @@ export default {
     return {};
   },
   computed: {
-    imgLen() {
+    imageLen() {
       return this.images.lenght;
     },
   },
   methods: {
+    imageNext() {
+      this.imageDir = "right";
+      if (this.imageVisibleSlide >= this.imageLen - 1) {
+        this.imageVisibleSlide = 0;
+      } else {
+        this.imageVisibleSlide++;
+      }
+    },
+    imagePrev() {
+      this.imageDir = "left";
+      if (this.imageVisibleSlide < 0) {
+        this.imageVisibleSlide = this.imageLen - 1;
+      } else {
+        this.imageVisibleSlide--;
+      }
+    },
     next() {
       this.dir = "right";
-      if (this.visibleSlide >= this.imgLen - 1) {
+      if (this.visibleSlide >= 5) {
         this.visibleSlide = 0;
       } else {
         this.visibleSlide++;
@@ -152,14 +175,13 @@ export default {
     prev() {
       this.dir = "left";
       if (this.visibleSlide < 0) {
-        this.visibleSlide = this.imgLen - 1;
+        this.visibleSlide = 5;
       } else {
         this.visibleSlide--;
       }
     },
-    changeImg(img) {
+    changeImage(img) {
       this.currentImg = img;
-      // console.log("test");
     },
   },
 };

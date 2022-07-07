@@ -7,11 +7,17 @@ import Transit from "../views/Transit";
 import OrderHistory from "../views/OrderHistory";
 import SellerProfile from "../views/SellerProfile";
 import ProductEditing from "../views/ProductEditing";
+import Profile from "../views/Profile";
 const routes = [
   {
     path: "/customer-review",
     name: "CustomerReview",
     component: CustomerReview,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
   },
   {
     path: "/product-xxx",
@@ -29,7 +35,7 @@ const routes = [
     component: SellerProfile,
   },
   {
-    path: "/pending-approval",
+    path: "/pending",
     name: "PendingApproval",
     component: PendingApproval,
   },
