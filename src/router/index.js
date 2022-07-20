@@ -8,6 +8,9 @@ import OrderHistory from "../views/OrderHistory";
 import SellerProfile from "../views/SellerProfile";
 import ProductEditing from "../views/ProductEditing";
 import Profile from "../views/Profile";
+import Register from "../views/Register";
+import Login from "../views/Login";
+
 const routes = [
   {
     path: "/customer-review",
@@ -53,6 +56,16 @@ const routes = [
     path: "/order-history",
     name: "OrderHistory",
     component: OrderHistory,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
   },
 ];
 
