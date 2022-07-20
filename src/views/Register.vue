@@ -29,7 +29,7 @@
                       <button
                       @click="createUser"
                         class="mb-3 inline-block w-full rounded px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-                        type="submit"
+                        type="button"
                         data-mdb-ripple="true"
                         data-mdb-ripple-color="light"
                         style="
@@ -63,8 +63,6 @@
 
 <script>
 import sellerService from '@/service/sellerService';
-import { application } from 'express';
-
 export default {
   name: "Register",
   components: {
@@ -81,7 +79,7 @@ export default {
         }
   }},
   methods: {
-    createUser: async function (){
+    createUser(){
         console.log(firstname.value)
         const userMap = {
             'firstname' : firstname.value,
@@ -90,7 +88,7 @@ export default {
             'password' : password.value
         }
         console.log(userMap)
-        let response = await sellerService.register(userMap)
+        let response = sellerService.register(userMap)
         console.log(response)
     },
   },

@@ -25,7 +25,7 @@
 
 <script>
 // Imports
-import api from "@/service/customerService";
+import customerService from "@/service/customerService";
 import NavBar from "./views/NavBar.vue";
 import SideBar from "./views/SideBar.vue";
 // Exports
@@ -41,7 +41,7 @@ export default {
   }),
   methods: {
     logout: async function() {
-      let response = await api.logout();
+      let response = await customerService.logout();
       if(response.data.success){
         await this.$router.push("/Login")
       }
