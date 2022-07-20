@@ -15,7 +15,9 @@
     "vue-awesome-paginate": "^0.0.9",
     "vue-router": "^4.0.16",
     "vue-star-rating": "^2.1.0",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "axios": "^0.27.2",
+    "vue-axios": "^3.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
