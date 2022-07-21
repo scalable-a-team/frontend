@@ -36,7 +36,7 @@
                     </div>
                     <div class="flex items-center justify-between pb-6">
                       <p class="mb-0 mr-2">Don't have an account?</p>
-                      <button @click="testVuex" type="button"
+                      <button @click="pushRegisterPage" type="button"
                         class="inline-block rounded border-2 border-purple-600 px-6 py-2 text-xs font-medium uppercase leading-tight text-purple-600 transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                         data-mdb-ripple="true" data-mdb-ripple-color="light">Register</button>
                     </div>
@@ -121,8 +121,7 @@ export default {
       }
     },
     pushRegisterPage: async function () {
-      console.log('Done')
-      await this.$router.push("/Register")
+      this.$router.push("/Register")
     },
     testVuex() {
       console.log(this.$store.state.isLoggedIn)

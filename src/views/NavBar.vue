@@ -25,7 +25,7 @@
           alt="" class="rounded-full" />
       </div>
 
-      <h1 class="font-semibold">대한민국</h1>
+      <h1 class="font-semibold">{{$store.state.username}}</h1>
       <Menu as="div" class="relative inline-block">
         <div>
           <MenuButton class="inline-flex justify-center w-full">
@@ -44,6 +44,7 @@
                   <UserIcon v-if="item.title=='My Profile'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <LogoutIcon v-if="item.title=='Logout'" @click="onLogout" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <LoginIcon v-if="item.title=='Login'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
+                  <LoginIcon v-if="item.title=='Register'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <InboxIcon v-if="item.title=='Message'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <MenuItem v-slot="{ active }">
                   <a :href=item.route :class="[

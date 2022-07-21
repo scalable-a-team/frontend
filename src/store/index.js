@@ -54,6 +54,7 @@ export default new Vuex.Store({
             ]
             let anonymousDrawer = [
                 { title: 'Login', route: '/login' },
+                { title: 'Register', route: '/register'}
             ]
             if (state.isLoggedIn){
                 return userDrawer
