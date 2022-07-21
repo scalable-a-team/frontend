@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- {{ this.$store.state.username }} -->
+    <div v-if="this.messages_channel.length == 0">No message yet</div>
     <div v-if="this.messages_channel.length > 3">
       <div
         v-for="index in 3"
@@ -130,7 +130,7 @@ export default {
     async getMessagesChannel() {
       if (this.$route.query.sender_id === undefined) return;
       const res = await fetch(
-        `http://localhost:80/api/get_messages_channel/${this.$route.query.sender_id}`,
+        `http://localhost:80/api/chat/get_messages_channel/${this.$route.query.sender_id}`,
         {
           method: "GET",
           headers: {

@@ -51,6 +51,9 @@ const store = new Vuex.Store({
   },
   actions: {
     setLoggedInUser({ commit }, payload) {
+      console.log("----");
+      console.log(payload);
+      console.log("----");
       commit("update_isLoggedIn", payload.isLoggedIn);
       commit("update_username", payload.username);
       commit("update_firstname", payload.firstname);
@@ -86,6 +89,8 @@ const store = new Vuex.Store({
         isLoggedIn: state.isLoggedIn,
         username: state.username,
         role: state.role,
+        username: state.firstname,
+        role: state.lastname,
         balance: state.balance,
         access_token: state.access_token,
         refresh_token: state.refresh_token,
@@ -95,7 +100,7 @@ const store = new Vuex.Store({
     getMenuItem(state) {
       let userDrawer = [
         { title: "My Profile", route: "/profile" },
-        { title: "Message", route: "/messages" },
+        { title: "Message", route: `/messages?sender_id=${state.username}` },
       ];
       let anonymousDrawer = [
         { title: "Login", route: "/login" },

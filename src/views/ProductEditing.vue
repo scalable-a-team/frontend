@@ -1,6 +1,8 @@
 <template>
   <div class="m-10 flex flex-row">
     <div class="basis-1/2 flex flex-col items-center bg-gray-30">
+      <!-- {{ images }} -->
+
       <div
         id="carouselExampleControls"
         class="carousel slide relative"
@@ -9,13 +11,17 @@
         <div class="carousel-inner relative w-full overflow-hidden">
           <div class="carousel-item active relative float-left w-full bg-black">
             <img :src="images[0]" class="block w-full" alt="No image" />
+            <!-- class="block w-full h-full" -->
+            <!-- src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" -->
+            <!-- <img class="block w-full object-cover" alt="No image" /> -->
           </div>
           <div
             class="carousel-item relative float-left w-full"
             v-for="image in images.slice(1)"
             :key="image.id"
           >
-            <img :src="image" class="block w-full h-20" alt="No image" />
+            <!-- class="block w-full h-full" -->
+            <img :src="image" class="block w-full object-fit" alt="No image" />
           </div>
         </div>
         <button
@@ -56,9 +62,12 @@
               :visibleSlide="visibleSlide"
               :dir="dir"
             >
-              <div v-for="item in this.product_info.reviews" class="border ml-10 pl-10 pt-5 border-[#44BFD7] border-opacity-30 h-full w-3/4 flex flex-col rounded-md">
-                  <div class="space-x-2 flex items-center">
-                  <h1 class="pt-1">{{item.customer_name}}</h1>
+              <div
+                v-for="item in this.product_info.reviews"
+                class="border ml-10 pl-10 pt-5 border-[#44BFD7] border-opacity-30 h-full w-3/4 flex flex-col rounded-md"
+              >
+                <div class="space-x-2 flex items-center">
+                  <h1 class="pt-1">{{ item.customer_name }}</h1>
                   <StarRating
                     :active-color="['#3FABC3', '#3FABC3']"
                     star-size="20"
@@ -68,14 +77,15 @@
                     :show-rating="false"
                   />
                 </div>
-                <p>{{item.review_text}}</p> 
-              </div> 
+                <p>{{ item.review_text }}</p>
+              </div>
             </carousel-slide>
           </carousel>
         </div>
       </div>
     </div>
 
+    <!-- {{ this.product_info }} -->
     <!-- Pricing Scheme -->
     <!-- About Product -->
     <div class="basis-1/2 flex flex-col items-center">
@@ -83,23 +93,35 @@
         class="border mb-16 border-[#44BFD7] border-opacity-30 h-2/5 w-1/2 flex flex-col rounded-lg"
       >
         <h1 class="text-center text-xl mt-2">Pricing Scheme</h1>
-        <h1 class="text-center mb-4">$ {{this.product_info.price}}</h1>
-        <h1 class="text-center mb-4">Seller: {{this.product_info.seller_name}}</h1>
+        <h1 class="text-center mb-4">$ {{ this.product_info.price }}</h1>
+        <h1 class="text-center mb-4">
+          Seller: {{ this.product_info.seller_name }}
+        </h1>
       </div>
       <div
         class="border border-[#44BFD7] border-opacity-30 h-56 w-3/4 flex flex-col rounded-lg"
       >
         <h1 class="text-center text-xl mt-5">About Product</h1>
-        <h1 class="text-center mb-4">Product: {{this.product_info.product_name}}</h1>
-        <h1 class="text-center mb-4">Description: {{this.product_info.description}}</h1>
+        <h1 class="text-center mb-4">
+          Product: {{ this.product_info.product_name }}
+        </h1>
+        <h1 class="text-center mb-4">
+          Description: {{ this.product_info.description }}
+        </h1>
       </div>
-      <div class="mt-10 w-full">
+
+      <div v-if="this.$store.state.role === 'customer'" class="mt-10 w-full">
         <div class="flex justify-evenly">
           <button class="button" @click="contactSeller">
             <router-link
               :to="{
                 path: '/create-order',
-                query: { buyer: this.user, price: 10, productName: 'U SHOP' },
+                query: {
+                  buyer: this.user,
+                  price: 10,
+                  productName: 'U SHOP',
+                  productId: this.product_info._id,
+                },
               }"
             >
               Order here
@@ -109,23 +131,21 @@
             <router-link
               :to="{
                 path: '/message',
-                query: { sender_id: this.$store.state.username, receiver_id: this.seller },
+                query: {
+                  sender_id: this.$store.state.username,
+                  receiver_id: this.seller,
+                },
               }"
             >
               Contact Seller
             </router-link>
           </button>
         </div>
-        <div class="flex flex-row justify-center mt-10 space-x-16">
-          <button class="button">Submit</button>
-          <button class="button">Reset</button>
-        </div>
       </div>
     </div>
     <!-- Button -->
   </div>
 </template>
-
 
 <script>
 import "tw-elements";
@@ -208,18 +228,20 @@ export default {
       this.currentImg = img;
     },
   },
-  mounted(){
-    let pid = this.$route.query.product_id
-    productService.get_one_product(pid)
-    .then((product_response) => {
-      this.product_info = product_response.data
-      this.images = product_response.data.images
-      this.seller = product_response.data.seller_name
-      console.log(this.images)
-      console.log(this.product_info._id)
-    }).catch((error_response) =>{
-      console.log(error_response)
-    })
+  mounted() {
+    let pid = this.$route.query.product_id;
+    productService
+      .get_one_product(pid)
+      .then((product_response) => {
+        this.product_info = product_response.data;
+        this.images = product_response.data.images;
+        this.seller = product_response.data.seller_name;
+        console.log(this.images);
+        console.log(this.product_info._id);
+      })
+      .catch((error_response) => {
+        console.log(error_response);
+      });
   },
 };
 </script>

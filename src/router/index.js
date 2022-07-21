@@ -115,7 +115,7 @@ router.beforeEach(async (to, from, next) => {
   if (
     to.name === "SellerProduct" &&
     store.state.isLoggedIn &&
-    store.state.role != "Customer"
+    store.state.role === "Customer"
   ) {
     console.log("You already login");
     return next({ name: "ProductListing" });

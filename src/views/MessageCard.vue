@@ -4,7 +4,10 @@
     <router-link
       :to="{
         path: '/message',
-        query: { sender_id: 'yuqi', receiver_id: this.receiver_id },
+        query: {
+          sender_id: this.$store.state.username,
+          receiver_id: this.receiver_id,
+        },
       }"
     >
       <!-- {{ num }} -->

@@ -189,7 +189,7 @@ export default {
               username: userMap.username,
               role: "customer",
               first_name: login_response.data.user.profile.first_name,
-              last_name: login_response.data.users.profile.last_name,
+              last_name: login_response.data.user.profile.last_name,
               balance: login_response.data.user.wallet_balance,
               access_token: login_response.data.access_token,
               refresh_token: login_response.data.refresh_token,
