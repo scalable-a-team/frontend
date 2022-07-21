@@ -19,15 +19,20 @@
     </div>
     <!-- Profile -->
     <div class="flex flex-row items-center basis-1/5 space-x-2">
-      <div class="h-16 w-16 cursor-pointer mr-5">
-        <img
-          src="https://img.wattpad.com/ff54a8ffdbb8a23597558f8525770d350b2d9dcc/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f52344c51585f43773230715270673d3d2d3133312e313632303361666136366566373565623134373734313533353136372e6a7067?s=fit&w=720&h=720"
-          alt="" class="rounded-full" />
-      </div>
+      <template v-if="$store.state.isLoggedIn">
+        <div class="h-16 w-16 cursor-pointer mr-5">
+          <img
+              src="https://img.wattpad.com/ff54a8ffdbb8a23597558f8525770d350b2d9dcc/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f52344c51585f43773230715270673d3d2d3133312e313632303361666136366566373565623134373734313533353136372e6a7067?s=fit&w=720&h=720"
+              alt="" class="rounded-full" />
+        </div>
+        <h1 class="font-semibold">{{$store.state.username}}</h1>
+      </template>
+      <template v-else>
+        <router-link to="/login"> Login </router-link>
+      </template>
 
-      <h1 class="font-semibold">{{$store.state.username}}</h1>
       <Menu as="div" class="relative inline-block">
-        <div>
+        <div v-if="$store.state.isLoggedIn">
           <MenuButton class="inline-flex justify-center w-full">
             <ChevronDownIcon class="h-5 w-5 text-[#444B65]" aria-hidden="true" />
           </MenuButton>
@@ -42,7 +47,6 @@
               <li v-for="item in $store.getters.getMenuItem" :key="item.title" router :to="item.route">
                 <div class="relative">
                   <UserIcon v-if="item.title=='My Profile'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
-                  <LogoutIcon v-if="item.title=='Logout'" @click="onLogout" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <LoginIcon v-if="item.title=='Login'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <LoginIcon v-if="item.title=='Register'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <InboxIcon v-if="item.title=='Message'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
@@ -51,6 +55,17 @@
                     active ? 'bg-gray-700 text-white' : 'text-white',
                     'block pl-10 px-4 py-2 text-sm',
                   ]">{{item.title}}</a>
+                  </MenuItem>
+                </div>
+              </li>
+              <li @click.prevent="onLogout">
+                <div class="relative">
+                  <LogoutIcon class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
+                  <MenuItem v-slot="{ active }">
+                    <a href="#" :class="[
+                    active ? 'bg-gray-700 text-white' : 'text-white',
+                    'block pl-10 px-4 py-2 text-sm',
+                  ]">Logout</a>
                   </MenuItem>
                 </div>
               </li>
@@ -77,7 +92,7 @@ import {
 import { MenuItems, MenuItem, Menu, MenuButton } from "@headlessui/vue";
 // import {} from '@'
 export default {
-  name: "",
+  name: "NavBar",
   data: () => ({
   }),
   components: {
@@ -85,7 +100,7 @@ export default {
     SearchIcon,
     UserIcon,
     InboxIcon,
-    BellIcon,
+    // BellIcon,
     LogoutIcon,
     LoginIcon,
     MenuItems,
@@ -95,8 +110,11 @@ export default {
   },
   methods:{
     async onLogout() {
+      console.log(this.$store.state.username)
       this.$store.dispatch('clearUser')
-      this.$router.push("/")
+      window.localStorage.removeItem('vuex');
+      console.log(this.$store.state.username)
+      // this.$router.push("/")
     }
   }
 };

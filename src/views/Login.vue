@@ -14,16 +14,16 @@
                     <h4 class="mt-1 mb-12 pb-1 text-xl font-semibold">Printaverse</h4>
                   </div>
                   <form>
-                    <p class="mb-4">Please login to your account</p>
+                    <p class="mb-4">Please login to your {{seller_account_type ? 'customer' : 'seller'}} account</p>
                     <div class="mb-4">
                       <input type="text"
                         class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-                        id="username" placeholder="Username" required />
+                        id="username" placeholder="Username" v-model="username" required />
                     </div>
                     <div class="mb-4">
                       <input type="password"
                         class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-                        id="password" placeholder="Password" required />
+                        id="password" placeholder="Password" v-model="password" required />
                     </div>
                     <div class="mb-12 pt-1 pb-1 text-center">
                       <button @click="onLogin"
@@ -41,8 +41,8 @@
                         data-mdb-ripple="true" data-mdb-ripple-color="light">Register</button>
                     </div>
                     <div class="mb-4">
-                      <a href="#" @click.prevent="update_login_type" class="no-underline hover:underline ...">{{
-                          seller_account_type ? 'Customer Login' : 'Seller Login'}}</a>
+                      <a href="#" @click.prevent="update_login_type" class="no-underline hover:underline ...">Go to {{
+                          seller_account_type ? 'Seller Login' : 'Customer Login'}}</a>
                     </div>
                   </form>
                 </div>
@@ -74,15 +74,17 @@ export default {
   name: "Login",
   data: () => ({
     seller_account_type: false,
-    login_label: 'Seller login'
+    login_label: 'Seller login',
+    username: "",
+    password: ""
   }),
   components: {
   },
   methods: {
     async onLogin() {
       const userMap = {
-        'username': username.value,
-        'password': password.value
+        'username': this.username,
+        'password': this.password
       }
       if (this.seller_account_type) {
         sellerService.login(userMap)
@@ -102,7 +104,7 @@ export default {
           })
 
       }
-      else { 
+      else {
         customerService.login(userMap)
           .then((login_response) => {
             const user_store_info = {
@@ -122,11 +124,6 @@ export default {
     },
     pushRegisterPage: async function () {
       this.$router.push("/Register")
-    },
-    testVuex() {
-      console.log(this.$store.state.isLoggedIn)
-      console.log(this.$store.state.access_token)
-      this.$store.dispatch('set_access_token', { access_token: 'TEST-TOKEN' })
     },
     update_login_type() {
       this.seller_account_type = !this.seller_account_type

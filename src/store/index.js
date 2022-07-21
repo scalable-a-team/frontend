@@ -1,6 +1,11 @@
 import Vuex from "vuex";
+import VuexPersistence from 'vuex-persist';
 
-export default new Vuex.Store({
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage,
+});
+
+const store = new Vuex.Store({
     state: { // State
         isLoggedIn: false,
         username: null,
@@ -50,7 +55,6 @@ export default new Vuex.Store({
             let userDrawer = [
                 { title: 'My Profile', route: '/profile' },
                 { title: 'Message', route:'/message'},
-                { title: 'Logout', route: '/' },
             ]
             let anonymousDrawer = [
                 { title: 'Login', route: '/login' },
@@ -64,4 +68,7 @@ export default new Vuex.Store({
         }
     },
     modules: {},
+    plugins: [vuexLocal.plugin]
 })
+
+export default store
