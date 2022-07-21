@@ -5,13 +5,13 @@
       <!-- Image -->
       <div>
         <img
-          alt="no pic"
-          src="https://i.all3dp.com/wp-content/uploads/2017/10/27000303/shoe_in_printer.jpg"
-          class="h-60 w-full object-cover rounded-t-lg"
+            alt="no pic"
+            :src="product.image_url"
+            class="h-60 w-full object-cover rounded-t-lg"
         />
       </div>
       <div
-        class="bg-white rounded-b-lg h-16 flex items-center justify-between px-5 bg-gradient-to-r from-[#1A253B] to-[#3D4C76]"
+          class="bg-white rounded-b-lg h-16 flex items-center justify-between px-5 bg-gradient-to-r from-[#1A253B] to-[#3D4C76]"
       >
         <p class="">{{product.product_name}}</p>
 

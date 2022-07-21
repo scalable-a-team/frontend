@@ -1,50 +1,74 @@
 <template>
-  <div>
-    <div class="text-right mr-10 mt-10">
+  <div class="m-10 mr-10 w-full h-[28rem]">
+    <p class="">My Product</p>
+    <div class="text-right mr-20 mt-10">
       <router-link to="/create-product">
         <button to="/create-product" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Create Product
         </button>
       </router-link>
     </div>
-    <div class="m-10 mr-10 w-full h-[28rem]">
-      <!-- <p class="">Product Listing</p> -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <Product :productList="productList" />
-        <Product :productList="productList" />
-        <Product :productList="productList" />
-        <Product :productList="productList" />
-      </div>
-      <div class="flex-end">
-        <Pagination @clicked="test" />
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <Product v-for="product in products" :key="product._product_id" :product="product"  />
+    </div>
+    <div class="flex-end">
+      <Pagination @clicked="onClickHandler" :item-per-page="itemPerPage" :total-items="itemNumbers" />
     </div>
   </div>
-
   <!-- <div class="divide-y"> -->
 </template>
 
 <script>
-import { PlusIcon } from "@heroicons/vue/solid";
 import Product from "../components/Product";
 import Pagination from "./Pagination.vue";
+import api from '@/service/api';
 export default {
-  name: "SellerProduct",
+  name: "ProductListing",
   components: {
     Product,
-    Pagination
+    Pagination,
   },
   props: {
     productList: Object,
+    sellerId: String
+  },
+  data () {
+    return {
+      products: [],
+      itemNumbers: 0,
+      itemPerPage: 10,
+      from: 1
+    }
+  },
+  async mounted() {
+    try {
+      const { data } = await api.get(`product/es/seller_products/${this.$store.state.userid}?size=${this.itemPerPage}`)
+      this.products = data.data.map(product => ({
+        '_product_id': product._id,
+        'product_name': product.product_name,
+        'image_url': product.images[0],
+        'price': product.price
+      }))
+      this.itemNumbers = data.total
+    } catch (e) {
+      console.log(e)
+    }
   },
   methods: {
-    test() {
-      console.log("test");
-    },
+    async onClickHandler(page) {
+      try {
+        const { data } = await api.get(`product/es/seller_products/${this.$store.state.userid}?from=${page}&size=${this.itemPerPage}`)
+        this.products = data.data.map(product => ({
+          '_product_id': product._id,
+          'product_name': product.product_name,
+          'image_url': product.images[0],
+          'price': product.price
+        }))
+        this.itemNumbers = data.total
+      } catch (e) {
+        console.log(e)
+      }
+    }
   },
-}
+};
 </script>
-
-<style scoped>
-
-</style>
