@@ -20,13 +20,13 @@
         </div>
         <div class="w-full space-y-5">
           <div class="border border-[#2F394D] h-12 rounded-md">
-            <p class="mx-2 my-1">test</p>
+            <p class="mx-2 my-1">{{ order.description_text }}</p>
           </div>
           <div class="border border-[#2F394D] h-12 rounded-md">
-            <p class="mx-2 my-1">test</p>
+            <p class="mx-2 my-1">{{ order.total_incl_tax }}</p>
           </div>
           <div class="border border-[#2F394D] h-12 rounded-md">
-            <p class="mx-2 my-1">test</p>
+            <p class="mx-2 my-1">{{ order.dimension_text }}</p>
           </div>
         </div>
         <!-- <div class="flex m-5 space-x-5">
@@ -49,8 +49,8 @@
         </div> -->
       </div>
       <div v-if="disable" class="flex justify-center space-x-12">
-        <button class="button">Submit</button>
-        <button class="button">Reset</button>
+        <button class="button" @click="acceptOrder" >Submit</button>
+        <button class="button" @click="declineOrder" >Reset</button>
       </div>
     </div>
   </div>
@@ -58,33 +58,33 @@
 </template>
 
 <script>
-import Avatar from "./Avatar";
-import Pagination from "../views/Pagination.vue";
 export default {
   name: "StatusCard",
-  components: {
-    Pagination,
-    Avatar,
-  },
   props: {
     isPending: {
       type: Boolean,
       required: true,
     },
     order: Object,
+    customerName: String,
     idx: Number,
     disable: Boolean,
   },
   data() {
     return {
-      customer: this.order.customer,
-      detail: this.order.detail,
+      customer: this.customerName
     };
   },
   methods: {
     test() {
       console.log(this.idx);
     },
+    acceptOrder() {
+      this.$emit("accept-order", this.order.uuid)
+    },
+    declineOrder() {
+      this.$emit("decline-order", this.order.uuid)
+    }
   },
 };
 </script>
