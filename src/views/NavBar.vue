@@ -30,7 +30,6 @@
       <template v-else>
         <router-link to="/login"> Login </router-link>
       </template>
-
       <Menu as="div" class="relative inline-block">
         <div v-if="$store.state.isLoggedIn">
           <MenuButton class="inline-flex justify-center w-full">
@@ -85,14 +84,14 @@ import {
   SearchIcon,
   UserIcon,
   InboxIcon,
-  // BellIcon,
+  BellIcon,
   LogoutIcon,
   LoginIcon
 } from "@heroicons/vue/outline";
 import { MenuItems, MenuItem, Menu, MenuButton } from "@headlessui/vue";
 // import {} from '@'
 export default {
-  name: "NavBar",
+  name: "",
   data: () => ({
   }),
   components: {
@@ -100,7 +99,7 @@ export default {
     SearchIcon,
     UserIcon,
     InboxIcon,
-    // BellIcon,
+    BellIcon,
     LogoutIcon,
     LoginIcon,
     MenuItems,
