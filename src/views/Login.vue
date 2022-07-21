@@ -14,7 +14,7 @@
                     <h4 class="mt-1 mb-12 pb-1 text-xl font-semibold">Printaverse</h4>
                   </div>
                   <form>
-                    <p class="mb-4">Please login to your {{seller_account_type ? 'customer' : 'seller'}} account</p>
+                    <p class="mb-4">Please login to your {{seller_account_type ? 'seller' : 'customer'}} account</p>
                     <div class="mb-4">
                       <input type="text"
                         class="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-4">
                       <a href="#" @click.prevent="update_login_type" class="no-underline hover:underline ...">Go to {{
-                          seller_account_type ? 'Seller Login' : 'Customer Login'}}</a>
+                          seller_account_type ? 'Customer Login' : 'Seller Login'}}</a>
                     </div>
                   </form>
                 </div>

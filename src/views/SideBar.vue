@@ -8,6 +8,13 @@
       @click="index = 0"
       page="/"
     />
+    <MenuItem
+      text="My Product"
+      amount="52"
+      :isVisible="index === 1"
+      @click="index = 1"
+      page="my-product"
+    />
     <template v-if="$store.state.isLoggedIn">
       <MenuItem
           text="Product Status"
