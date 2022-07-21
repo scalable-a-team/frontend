@@ -57,7 +57,7 @@ class productService {
     }
 
     get_one_product(id){
-        const response = api.post('product/get/' + id)
+        const response = api.get('product/' + id)
         return response
     }
 

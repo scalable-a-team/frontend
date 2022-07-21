@@ -1,5 +1,5 @@
 <template>
-  <router-link to="product-xxx" :product_id="product._product_id">
+  <router-link :to="{ path: '/product-xxx', query: {product_id: product._product_id}}">
     <div class="m-5 cursor-pointer">
       <!-- duration-100 ease-in hover:scale-110"> -->
       <!-- Image -->

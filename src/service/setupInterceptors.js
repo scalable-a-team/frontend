@@ -20,7 +20,6 @@ const setup = (store) => {
     },
     async (err) => {
       const originalConfig = err.config;
-
       if (store.state.role == 'customer'){ //TODO: May require name changes
         if (originalConfig.url !== "user/customer/login" && err.response) {
             // Access Token was expired
