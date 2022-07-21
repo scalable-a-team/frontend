@@ -64,119 +64,7 @@
               placeholder="Put in dimension."
             />
           </div>
-          <!-- <div>
-            <label
-              for="product_tag"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Dimension
-            </label>
-            <div v-if="productTags" class="mt-2">
-              <TagComponent
-                class="mr-2"
-                v-for="tag in productTags"
-                :key="tag"
-                :text="tag"
-              />
-            </div>
-          </div> -->
-          <!-- <div class="flex justify-center">
-            <div class="mb-3 xl:w-96">
-              <select
-                @change="onTagChange($event.target.value)"
-                class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                aria-label="Default select example"
-              >
-                <option selected>Select Tags</option>
-                <option
-                  v-for="tag in availableTags"
-                  :value="tag.tag_name"
-                  :key="tag._id"
-                >
-                  {{ tag.tag_name }}
-                </option>
-              </select>
-            </div>
-          </div> -->
-          <!-- <div>
-            <label
-              for="product_categories"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Categories
-            </label>
-          </div>
-          <div v-if="productCategories" class="mt-2">
-            <TagComponent
-              class="mr-2"
-              v-for="category in productCategories"
-              :key="category"
-              :text="category"
-            />
-          </div> -->
-          <!-- <div class="flex justify-center">
-            <div class="mb-3 xl:w-96">
-              <select
-                @change="onCategoriesChange($event.target.value)"
-                class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                aria-label="Default select example"
-              >
-                <option selected>Select Categories</option>
-                <option
-                  v-for="category in availableCategories"
-                  :value="category.category_name"
-                  :key="category._id"
-                >
-                  {{ category.category_name }}
-                </option>
-              </select>
-            </div>
-          </div> -->
-          <div>
-            <!-- <label class="block text-sm font-medium text-gray-700">
-              Cover photo
-            </label>
-            <div
-              class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
-            >
-              <div class="space-y-1 text-center">
-                <svg
-                  class="mx-auto h-12 w-12 text-gray-400"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 48 48"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <div class="flex text-sm text-gray-600">
-                  <label
-                    for="file-upload"
-                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                  >
-                    <span>Upload a file</span>
-                    <input
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      class="sr-only"
-                      @change="
-                        filesChange($event.target.name, $event.target.files);
-                        fileCount = $event.target.files.length;
-                      "
-                    />
-                  </label>
-                  <p class="pl-1">or drag and drop</p>
-                </div>
-                <p class="text-xs text-gray-500">PNG or JPG</p>
-              </div>
-            </div> -->
-          </div>
+          <div></div>
           <div v-if="uploadedImages.length > 0">
             <label class="block text-sm font-medium text-gray-700">
               Uploaded files:
@@ -243,65 +131,17 @@ export default {
   setup() {
     return {};
   },
-  async created() {
-    let response;
-    response = await api.get("product/categories");
-    this.availableCategories = response.data.categories;
-    this.availableCategories.map((category) => {
-      this.categoryStringToId[category.category_name] = category._id;
-    });
-
-    response = await api.get("product/tags");
-    this.availableTags = response.data.tags;
-    this.availableTags.map((category) => {
-      this.tagStringToId[category.tag_name] = category._id;
-    });
-  },
+  async created() {},
   methods: {
-    async filesChange(fieldName, fileList) {
-      // handle file changes
-      const formData = new FormData();
-      formData.append("image", fileList[0]);
-      try {
-        const { data } = await api.post("product/create/photo", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-        this.uploadedImages.push(data.s3_url);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-
-    onTagChange(tag) {
-      if (tag !== "Select Tags" && !this.productTags.includes(tag)) {
-        this.productTags.push(tag);
-      }
-    },
-
-    onCategoriesChange(category) {
-      if (
-        category !== "Select Categories" &&
-        !this.productCategories.includes(category)
-      ) {
-        this.productCategories.push(category);
-      }
-    },
-
-    deleteImage(idx) {
-      console.log(`deleting ${idx}`);
-      this.uploadedImages.splice(idx, 1);
-    },
-
     async createOrder() {
       try {
         const tagIds = this.productTags.map((name) => this.tagStringToId[name]);
         const categoryIds = this.productCategories.map(
           (name) => this.categoryStringToId[name]
         );
-        console.log(this.jobDescription);
-        console.log(this.dimension);
+        console.log(this.$route.query.productId);
         const payload = {
-          product_id: 1,
+          product_id: this.$route.query.productId,
           job_description: this.jobDescription,
           dimension: this.dimension,
         };
