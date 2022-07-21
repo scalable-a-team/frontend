@@ -9,7 +9,7 @@
           <div>
             <label for="product_name" class="block text-sm font-medium text-gray-700"> Product Name </label>
             <div class="mt-1">
-              <input v-model="productName" id="product_name" name="product_name" class="text-gray-700 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Brief description for your product." />
+              <input v-model="productName" id="product_name" name="product_name" class="text-gray-700 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Your product name" />
             </div>
           </div>
           <div>
@@ -20,7 +20,7 @@
           </div>
           <div>
             <label for="product_price" class="block text-sm font-medium text-gray-700"> Price </label>
-            <input type="number" v-model="productPrice" id="product_price" name="product_name" class="text-gray-700 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="Brief description for your product." />
+            <input type="number" v-model="productPrice" id="product_price" name="product_price" class="text-gray-700 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" />
           </div>
           <div>
             <label for="product_tag" class="block text-sm font-medium text-gray-700"> Tags </label>
@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <button type="submit" @click.prevent="createProduct" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+          <button type="submit" @click.prevent="createProduct" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create</button>
         </div>
       </div>
     </form>
@@ -221,6 +221,7 @@ export default {
             'Content-Type': 'application/json',
           }
         })
+        this.$router.push({ path: '/product-xxx', query: {product_id: data.product._id}})
       } catch (e) {
         console.log(e)
       }
