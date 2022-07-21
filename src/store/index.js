@@ -6,6 +6,7 @@ export default new Vuex.Store({
         username: null,
         role: null,
         access_token: null,
+        refresh_token: null,
     },
     mutations: { // Status
         update_isLoggedIn(state, isLoggedIn){
@@ -20,19 +21,24 @@ export default new Vuex.Store({
         update_access_token(state, access_token){
             state.access_token = access_token;
         },
+        update_refresh_token(state, refresh_token){
+            state.refresh_token = refresh_token;
+        }
     },
     actions: {
         setLoggedInUser({commit},payload){
-            commit("update_isLoggedIn", payload.loggedIn);
+            commit("update_isLoggedIn", payload.isLoggedIn);
             commit("update_username", payload.username);
             commit("update_user_role", payload.role);
             commit("update_access_token", payload.access_token);
+            commit("update_refresh_token", payload.refresh_token);
         },
         clearUser({commit}){
             commit("update_isLoggedIn", false);
             commit("update_username", null);
             commit("update_user_role", null);
             commit("update_access_token", null);
+            commit("update_refresh_token", null);
         },
         set_access_token({commit}, payload){
             commit("update_access_token", payload.access_token)
@@ -40,6 +46,21 @@ export default new Vuex.Store({
     },
     getters:{
         getCurrentLoggedInUser: state => state.username,
+        getMenuItem(state){
+            let userDrawer = [
+                { title: 'My Profile', route: '/profile' },
+                { title: 'Message', route:'/message'},
+                { title: 'Logout', route: '/' },
+            ]
+            let anonymousDrawer = [
+                { title: 'Login', route: '/login' },
+            ]
+            if (state.isLoggedIn){
+                return userDrawer
+            }else{
+                return anonymousDrawer;
+            }
+        }
     },
     modules: {},
 })
