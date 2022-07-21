@@ -130,7 +130,7 @@ export default {
     async getMessagesChannel() {
       if (this.$route.query.sender_id === undefined) return;
       const res = await fetch(
-        `http://localhost:80/api/chat/get_messages_channel/${this.$route.query.sender_id}`,
+        `/api/chat/get_messages_channel/${this.$route.query.sender_id}`,
         {
           method: "GET",
           headers: {
