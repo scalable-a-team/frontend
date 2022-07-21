@@ -15,6 +15,8 @@ import Login from "../views/Login";
 import ProductCreation from "../views/ProductCreation";
 import SellerProduct from "@/views/SellerProduct";
 
+import store from '../store/index'
+
 const routes = [
   {
     path: "/customer-review",
@@ -96,6 +98,31 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(async (to,from,next)=>{
+
+  if(to.name === "Login" && store.state.isLoggedIn){
+      console.log("You already login")
+      return next({name:"/"});
+  }
+
+  
+  // if(to.name !== "Login" && !isLoggedIn){
+  //     console.log("Please login first")
+  //     return next({name:"Login"});
+  // }
+
+  // if(to.name === "Carrier" && isLoggedIn && userRank < 1){
+  //     console.log("You are not allowed to be here")
+  //     return next({name:"Home"});
+  // }
+
+  
+  else{
+      // Navigate to next page
+      next();
+  }
 });
 
 export default router;

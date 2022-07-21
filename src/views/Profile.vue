@@ -2,7 +2,7 @@
   <div class="m-10 mr-10 space-y-5 w-full">
     <div class="">
       <div class="flex flex-row">
-        <div class="hidden ml-28 lg:flex items-center justify-center basis-2/5">
+        <div @click="$router.push('/')" class="hidden ml-28 lg:flex items-center justify-center basis-2/5">
           <img
             src="https://img.wattpad.com/ff54a8ffdbb8a23597558f8525770d350b2d9dcc/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f52344c51585f43773230715270673d3d2d3133312e313632303361666136366566373565623134373734313533353136372e6a7067?s=fit&w=720&h=720"
             class="rounded-lg w-96 h-96"

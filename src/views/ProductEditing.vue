@@ -1,9 +1,5 @@
 <template>
   <div class="m-10 flex flex-row">
-    <!-- Product Name and Images -->
-    <!-- Review -->
-    <!-- {{ this.currentImg }} -->
-    <!-- this.currentImg -->
     <div class="basis-1/2 flex flex-col items-center bg-gray-30">
       <div
         id="carouselExampleControls"
@@ -19,22 +15,8 @@
             v-for="image in images.slice(1)"
             :key="image.id"
           >
-            <img :src="image" class="block w-full" alt="No image" />
+            <img :src="image" class="block w-full h-20" alt="No image" />
           </div>
-          <!-- <div class="carousel-item active relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-              class="block w-full"
-              alt="Camera"
-            />
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-              class="block w-full"
-              alt="Exotic Fruits"
-            />
-          </div> -->
         </div>
         <button
           class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
@@ -61,106 +43,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <!-- <div
-        id="carouselExampleControls"
-        class="carousel slide relative"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner relative w-full overflow-hidden">
-          <div class="carousel-item active relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
-              class="block w-full"
-              alt="Wild Landscape"
-            />
-            <div class="carousel-item relative float-left w-full">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-                class="block w-full"
-                alt="Exotic Fruits"
-              />
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span
-            class="carousel-control-prev-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span
-            class="carousel-control-next-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
-      <!-- <h1 class="text-lg my-5">Product Template</h1>
-      <div
-        id="carouselExampleControls"
-        class="carousel slide relative"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner relative w-full overflow-hidden">
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-              class="block w-full"
-              alt="Camera"
-            />
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-              class="block w-full"
-              alt="Camera"
-            />
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-              class="block w-full"
-              alt="Exotic Fruits"
-            />
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span
-            class="carousel-control-prev-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span
-            class="carousel-control-next-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
       <div class="w-full mt-10">
         <p class="text-start mb-5 ml-24">
           What people liked about this product
@@ -168,28 +50,26 @@
         <div class="w-full">
           <carousel @next="next" @prev="prev">
             <carousel-slide
-              v-for="(image, index) in images"
+              v-for="(image, index) in this.product_info.images"
               :key="image"
               :index="index"
               :visibleSlide="visibleSlide"
               :dir="dir"
             >
-              <div
-                class="border ml-10 pl-10 pt-5 border-[#44BFD7] border-opacity-30 h-full w-3/4 flex flex-col rounded-md"
-              >
-                <div class="space-x-2 flex items-center">
-                  <h1 class="pt-1">Profile</h1>
+              <div v-for="item in this.product_info.reviews" class="border ml-10 pl-10 pt-5 border-[#44BFD7] border-opacity-30 h-full w-3/4 flex flex-col rounded-md">
+                  <div class="space-x-2 flex items-center">
+                  <h1 class="pt-1">{{item.customer_name}}</h1>
                   <StarRating
                     :active-color="['#3FABC3', '#3FABC3']"
                     star-size="20"
-                    :rating="5"
+                    :rating="item.stars"
                     read-only="true"
                     increment="0.1"
                     :show-rating="false"
                   />
                 </div>
-                <p>test</p>
-              </div>
+                <p>{{item.review_text}}</p> 
+              </div> 
             </carousel-slide>
           </carousel>
         </div>
@@ -203,11 +83,15 @@
         class="border mb-16 border-[#44BFD7] border-opacity-30 h-2/5 w-1/2 flex flex-col rounded-lg"
       >
         <h1 class="text-center text-xl mt-2">Pricing Scheme</h1>
+        <h1 class="text-center mb-4">$ {{this.product_info.price}}</h1>
+        <h1 class="text-center mb-4">Seller: {{this.product_info.seller_name}}</h1>
       </div>
       <div
         class="border border-[#44BFD7] border-opacity-30 h-56 w-3/4 flex flex-col rounded-lg"
       >
         <h1 class="text-center text-xl mt-5">About Product</h1>
+        <h1 class="text-center mb-4">Product: {{this.product_info.product_name}}</h1>
+        <h1 class="text-center mb-4">Description: {{this.product_info.description}}</h1>
       </div>
       <div class="mt-10 w-full">
         <div class="flex justify-end">
@@ -215,7 +99,7 @@
             <router-link
               :to="{
                 path: '/message',
-                query: { sender_id: this.user, receiver_id: this.seller },
+                query: { sender_id: this.$store.state.username, receiver_id: this.seller },
               }"
             >
               Contact Seller
@@ -231,6 +115,8 @@
     <!-- Button -->
   </div>
 </template>
+
+
 <script>
 import "tw-elements";
 import Carousel from "@/components/Carousel.vue";
@@ -239,6 +125,7 @@ import CarouselSlide from "@/components/CarouselSlide.vue";
 import ImageCarousel from "@/components/ImageCarousel.vue";
 import ImageCarouselSlide from "@/components/ImageCarouselSlide.vue";
 import ImageList from "@/components/ImageList";
+import productService from "@/service/productService";
 export default {
   name: "ProductEditing",
   components: {
@@ -249,34 +136,21 @@ export default {
     ImageCarouselSlide,
     ImageList,
   },
+  props: {
+    product_id: Object,
+  },
   data() {
     return {
-      user: "yuqi",
-      seller: "miyeon",
-      // contactPath: "/message/{{w3}}",
+      product_info: {},
+      seller: "",
       items: [0, 1, 2, 3, 4],
-      images: [
-        "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
-        "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
-        // "https://picsum.photos/id/237/600/350",
-        // "https://picsum.photos/id/231/600/350",
-        // "https://picsum.photos/id/232/600/350",
-        // "https://picsum.photos/id/233/600/350",
-        // "https://picsum.photos/id/234/600/350",
-        // "https://picsum.photos/id/234/600/350",
-        // "https://picsum.photos/id/234/600/350",
-        // "https://picsum.photos/id/234/600/350",
-        // "https://picsum.photos/id/234/600/350",
-      ],
+      images: [],
       visibleSlide: 0,
       dir: "",
       imageVisibleSlide: 0,
       imageDir: "",
       currentImg: "https://picsum.photos/id/237/600/350",
     };
-  },
-  created() {
-    console.log("test");
   },
   setup() {
     return {};
@@ -287,9 +161,6 @@ export default {
     },
   },
   methods: {
-    // contactSeller() {
-    //   // console.log("hi");
-    // },
     imageNext() {
       this.imageDir = "right";
       if (this.imageVisibleSlide >= this.imageLen - 1) {
@@ -326,6 +197,19 @@ export default {
     changeImage(img) {
       this.currentImg = img;
     },
+  },
+  mounted(){
+    let pid = this.$route.query.product_id
+    productService.get_one_product(pid)
+    .then((product_response) => {
+      this.product_info = product_response.data
+      this.images = product_response.data.images
+      this.seller = product_response.data.seller_name
+      console.log(this.images)
+      console.log(this.product_info._id)
+    }).catch((error_response) =>{
+      console.log(error_response)
+    })
   },
 };
 </script>

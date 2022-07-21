@@ -46,7 +46,7 @@ export default {
       this.products = data.data.map(product => ({
         '_product_id': product._id,
         'product_name': product.product_name,
-        'image_url': product.images[0],
+        'thumbnail': product.images[0],
         'price': product.price
       }))
       this.itemNumbers = data.total
@@ -61,7 +61,7 @@ export default {
         this.products = data.data.map(product => ({
           '_product_id': product._id,
           'product_name': product.product_name,
-          'image_url': product.images[0],
+          'thumbnail': product.images[0],
           'price': product.price
         }))
         this.itemNumbers = data.total

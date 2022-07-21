@@ -93,6 +93,7 @@ export default {
               'isLoggedIn': true,
               'username': userMap.username,
               'role': 'seller',
+              'balance': login_response.data.user.wallet_balance,
               'access_token': login_response.data.access_token,
               'refresh_token': login_response.data.refresh_token
             }
@@ -102,7 +103,6 @@ export default {
           }).catch((login_error) => {
             console.log(login_error)
           })
-
       }
       else {
         customerService.login(userMap)
@@ -111,6 +111,7 @@ export default {
               'isLoggedIn': true,
               'username': userMap.username,
               'role': 'customer',
+              'balance': login_response.data.user.wallet_balance,
               'access_token': login_response.data.access_token,
               'refresh_token': login_response.data.refresh_token
             }

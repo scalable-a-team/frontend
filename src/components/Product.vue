@@ -1,12 +1,12 @@
 <template>
-  <router-link to="product-xxx" :product_id="product._product_id">
+  <router-link :to="{ path: '/product-xxx', query: {product_id: product._product_id}}">
     <div class="m-5 cursor-pointer">
       <!-- duration-100 ease-in hover:scale-110"> -->
       <!-- Image -->
       <div>
         <img
             alt="no pic"
-            :src="product.image_url"
+            :src="product.thumbnail"
             class="h-60 w-full object-cover rounded-t-lg"
         />
       </div>
