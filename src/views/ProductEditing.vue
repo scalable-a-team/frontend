@@ -2,203 +2,44 @@
   <div class="m-10 flex flex-row">
     <!-- Product Name and Images -->
     <!-- Review -->
+    <!-- {{ this.currentImg }} -->
+    <!-- this.currentImg -->
     <div class="basis-1/2 flex flex-col items-center bg-gray-30">
-      <h1 class="text-lg my-5">Product Template</h1>
-
-      <img
-        alt="no pic"
-        :src="currentImg"
-        class="h-70 w-3/4 object-cover rounded-lg"
-      />
-      <!-- <div class="flex mt-10 h-20 justify-center -gray-300">
-        <image-carousel
-          @next="imageNext"
-          @prev="imagePrev"
-          :visible="visibleSlide"
-          :len="images.length"
-        >
-          <image-carousel-slide
-            v-for="(image, index) in images"
-            :key="image"
-            :index="index"
-            :visibleSlide="imageVisibleSlide"
-            :dir="imageDir"
-          >
-            <ImageList :index="index" @changeImage="changeImage(image)" />
-          </image-carousel-slide>
-        </image-carousel>
-      </div> -->
-      <!-- <div
-        id="carouselExampleCaptions"
-        class="carousel slide relative"
-        data-bs-ride="carousel"
-      >
-        <div
-          class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4"
-        >
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            class="inActive"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            class="active"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-        <div class="carousel-inner relative w-full overflow-hidden">
-          <div class="carousel-item active relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
-              class="block w-full"
-              alt="..."
-            />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
-              class="block w-full"
-              alt="..."
-            />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-              class="block w-full"
-              alt="..."
-            />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span
-            class="carousel-control-prev-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span
-            class="carousel-control-next-icon inline-block bg-no-repeat"
-            aria-hidden="true"
-          ></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
       <div
-        id="carouselExampleCaptions"
+        id="carouselExampleControls"
         class="carousel slide relative"
         data-bs-ride="carousel"
       >
-        <div
-          class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4"
-        >
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
         <div class="carousel-inner relative w-full overflow-hidden">
-          <div class="carousel-item active relative float-left w-full">
+          <div class="carousel-item active relative float-left w-full bg-black">
+            <img :src="images[0]" class="block w-full" alt="No image" />
+          </div>
+          <div
+            class="carousel-item relative float-left w-full"
+            v-for="image in images.slice(1)"
+            :key="image.id"
+          >
+            <img :src="image" class="block w-full" alt="No image" />
+          </div>
+          <!-- <div class="carousel-item active relative float-left w-full">
             <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
+              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
               class="block w-full"
-              alt="..."
+              alt="Camera"
             />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
           </div>
           <div class="carousel-item relative float-left w-full">
             <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
+              src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
               class="block w-full"
-              alt="..."
+              alt="Exotic Fruits"
             />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div class="carousel-item relative float-left w-full">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-              class="block w-full"
-              alt="..."
-            />
-            <div class="carousel-caption hidden md:block absolute text-center">
-              <h5 class="text-xl">Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
+          </div> -->
         </div>
         <button
           class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target="#carouselExampleControls"
           data-bs-slide="prev"
         >
           <span
@@ -210,7 +51,7 @@
         <button
           class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target="#carouselExampleControls"
           data-bs-slide="next"
         >
           <span
@@ -220,6 +61,106 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <!-- <div
+        id="carouselExampleControls"
+        class="carousel slide relative"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner relative w-full overflow-hidden">
+          <div class="carousel-item active relative float-left w-full">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+              class="block w-full"
+              alt="Wild Landscape"
+            />
+            <div class="carousel-item relative float-left w-full">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+                class="block w-full"
+                alt="Exotic Fruits"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon inline-block bg-no-repeat"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon inline-block bg-no-repeat"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> -->
+      <!-- <h1 class="text-lg my-5">Product Template</h1>
+      <div
+        id="carouselExampleControls"
+        class="carousel slide relative"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner relative w-full overflow-hidden">
+          <div class="carousel-item relative float-left w-full">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
+              class="block w-full"
+              alt="Camera"
+            />
+          </div>
+          <div class="carousel-item relative float-left w-full">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
+              class="block w-full"
+              alt="Camera"
+            />
+          </div>
+          <div class="carousel-item relative float-left w-full">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
+              class="block w-full"
+              alt="Exotic Fruits"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon inline-block bg-no-repeat"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon inline-block bg-no-repeat"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> -->
       <div class="w-full mt-10">
         <p class="text-start mb-5 ml-24">
           What people liked about this product
@@ -273,8 +214,8 @@
     <div></div>
   </div>
 </template>
-<!-- <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script> -->
 <script>
+import "tw-elements";
 import Carousel from "@/components/Carousel.vue";
 import StarRating from "vue-star-rating";
 import CarouselSlide from "@/components/CarouselSlide.vue";
@@ -295,15 +236,17 @@ export default {
     return {
       items: [0, 1, 2, 3, 4],
       images: [
-        "https://picsum.photos/id/237/600/350",
-        "https://picsum.photos/id/231/600/350",
-        "https://picsum.photos/id/232/600/350",
-        "https://picsum.photos/id/233/600/350",
-        "https://picsum.photos/id/234/600/350",
-        "https://picsum.photos/id/234/600/350",
-        "https://picsum.photos/id/234/600/350",
-        "https://picsum.photos/id/234/600/350",
-        "https://picsum.photos/id/234/600/350",
+        "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
+        "https://mdbcdn.b-cdn.net/img/new/slides/043.webp",
+        // "https://picsum.photos/id/237/600/350",
+        // "https://picsum.photos/id/231/600/350",
+        // "https://picsum.photos/id/232/600/350",
+        // "https://picsum.photos/id/233/600/350",
+        // "https://picsum.photos/id/234/600/350",
+        // "https://picsum.photos/id/234/600/350",
+        // "https://picsum.photos/id/234/600/350",
+        // "https://picsum.photos/id/234/600/350",
+        // "https://picsum.photos/id/234/600/350",
       ],
       visibleSlide: 0,
       dir: "",
@@ -311,6 +254,9 @@ export default {
       imageDir: "",
       currentImg: "https://picsum.photos/id/237/600/350",
     };
+  },
+  created() {
+    console.log("test");
   },
   setup() {
     return {};
