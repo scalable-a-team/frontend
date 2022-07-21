@@ -82,8 +82,8 @@ export default {
     createUser(){
         console.log(firstname.value)
         const userMap = {
-            'firstname' : firstname.value,
-            'lastname' : lastname.value,
+            'first_name' : firstname.value,
+            'last_name' : lastname.value,
             'username' : username.value,
             'password' : password.value
         }
