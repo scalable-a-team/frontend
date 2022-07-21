@@ -10,6 +10,8 @@ import ProductEditing from "../views/ProductEditing";
 import Profile from "../views/Profile";
 import Register from "../views/Register";
 import Login from "../views/Login";
+import ProductCreation from "../views/ProductCreation";
+import SellerProduct from "@/views/SellerProduct";
 
 const routes = [
   {
@@ -26,6 +28,16 @@ const routes = [
     path: "/product-xxx",
     name: "ProductEditing",
     component: ProductEditing,
+  },
+  {
+    path: "/create-product",
+    name: "ProductCreation",
+    component: ProductCreation,
+  },
+  {
+    path: "/my-product",
+    name: "SellerProduct",
+    component: SellerProduct,
   },
   {
     path: "/",
