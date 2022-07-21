@@ -92,6 +92,7 @@ export default {
             const user_store_info = {
               'isLoggedIn': true,
               'username': userMap.username,
+              'userid': login_response.data.user.id,
               'role': 'seller',
               'balance': login_response.data.user.wallet_balance,
               'access_token': login_response.data.access_token,
@@ -110,6 +111,7 @@ export default {
             const user_store_info = {
               'isLoggedIn': true,
               'username': userMap.username,
+              'userid': login_response.data.user.id,
               'role': 'customer',
               'balance': login_response.data.user.wallet_balance,
               'access_token': login_response.data.access_token,
