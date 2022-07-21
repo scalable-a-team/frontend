@@ -6,7 +6,7 @@
       <div>
         <img
             alt="no pic"
-            :src="product.image_url"
+            :src="product.thumbnail"
             class="h-60 w-full object-cover rounded-t-lg"
         />
       </div>
