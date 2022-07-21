@@ -8,20 +8,46 @@
       @click="index = 0"
       page="/"
     />
-    <MenuItem
-      text="Product Status"
-      amount="52"
-      :isVisible="index === 3 || index === 4 || index === 5"
-      @click="index = 3"
-      page="pending"
-    />
-    <MenuItem
-      text="Order History"
-      amount="52"
-      :isVisible="index === 2"
-      @click="index = 2"
-      page="order-history"
-    />
+    <template v-if="$store.state.isLoggedIn">
+      <MenuItem
+          text="Product Status"
+          amount="52"
+          :isVisible="index === 3 || index === 4 || index === 5"
+          @click="index = 3"
+          page="pending"
+      />
+      <MenuItem
+          text="Order History"
+          amount="52"
+          :isVisible="index === 2"
+          @click="index = 2"
+          page="order-history"
+      />
+      <div class="border-b border-[#50555E]"></div>
+      <h1>Status</h1>
+
+      <MenuItem
+          text="Pending"
+          amount="52"
+          :isVisible="index === 3"
+          @click="index = 3"
+          page="pending"
+      />
+      <MenuItem
+          text="In-progress"
+          amount="52"
+          :isVisible="index === 4"
+          @click="index = 4"
+          page="in-progress"
+      />
+      <MenuItem
+          text="In-transit"
+          amount="52"
+          :isVisible="index === 5"
+          @click="index = 5"
+          page="in-transit"
+      />
+    </template>
     <!-- <div class="flex items-center">
       <div v-if="1 === 2" class="absolute left-0 w-1 h-10 bg-[#3DABC0]"></div>
       <button
@@ -50,30 +76,7 @@
         <h1 class="text-[#9DA5B4]">Order History</h1>
       </div>
     </router-link> -->
-    <div class="border-b border-[#50555E]"></div>
-    <h1>Status</h1>
 
-    <MenuItem
-      text="Pending"
-      amount="52"
-      :isVisible="index === 3"
-      @click="index = 3"
-      page="pending"
-    />
-    <MenuItem
-      text="In-progress"
-      amount="52"
-      :isVisible="index === 4"
-      @click="index = 4"
-      page="in-progress"
-    />
-    <MenuItem
-      text="In-transit"
-      amount="52"
-      :isVisible="index === 5"
-      @click="index = 5"
-      page="in-transit"
-    />
     <!-- <div class="flex items-center">
       <div class="absolute left-0 w-1 h-10 bg-[#3DABC0]"></div>
       <div
