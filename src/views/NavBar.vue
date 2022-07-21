@@ -68,7 +68,55 @@
                   ]">Logout</a>
                   </MenuItem>
                 </div>
-              </li>
+
+              </router-link>
+              <div class="relative">
+                <BellIcon
+                  class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"
+                />
+                <MenuItem v-slot="{ active }">
+                  <a
+                    href="#"
+                    :class="[
+                      active ? 'bg-gray-700 text-white' : 'text-white',
+                      'block pl-10 px-4 py-2 text-sm',
+                    ]"
+                    >Notifications</a
+                  >
+                </MenuItem>
+              </div>
+              <div class="relative">
+                <InboxIcon
+                  class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"
+                />
+                <MenuItem v-slot="{ active }">
+                  <a
+                    href="/messages?sender_id=yuqi"
+                    :class="[
+                      active ? 'bg-gray-700 text-white' : 'text-white',
+                      'block pl-10 px-4 py-2 text-sm',
+                    ]"
+                    >Message</a
+                  >
+                </MenuItem>
+              </div>
+              <!-- <form method="POST" action="#"> -->
+              <div class="relative">
+                <LogoutIcon
+                  class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"
+                />
+                <MenuItem v-slot="{ active }">
+                  <a
+                    href="#"
+                    :class="[
+                      active ? 'bg-gray-700 text-white' : 'text-white',
+                      'block pl-10 px-4 py-2 text-sm',
+                    ]"
+                    >Logout</a
+                  >
+                </MenuItem>
+              </div>
+              <!-- </form> -->
             </div>
           </MenuItems>
         </transition>

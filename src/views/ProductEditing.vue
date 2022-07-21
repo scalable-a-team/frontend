@@ -209,9 +209,26 @@
       >
         <h1 class="text-center text-xl mt-5">About Product</h1>
       </div>
+      <div class="mt-10 w-full">
+        <div class="flex justify-end">
+          <button class="button" @click="contactSeller">
+            <router-link
+              :to="{
+                path: '/message',
+                query: { sender_id: this.user, receiver_id: this.seller },
+              }"
+            >
+              Contact Seller
+            </router-link>
+          </button>
+        </div>
+        <div class="flex flex-row justify-center mt-10 space-x-16">
+          <button class="button">Submit</button>
+          <button class="button">Reset</button>
+        </div>
+      </div>
     </div>
     <!-- Button -->
-    <div></div>
   </div>
 </template>
 <script>
@@ -234,6 +251,9 @@ export default {
   },
   data() {
     return {
+      user: "yuqi",
+      seller: "miyeon",
+      // contactPath: "/message/{{w3}}",
       items: [0, 1, 2, 3, 4],
       images: [
         "https://mdbcdn.b-cdn.net/img/new/slides/042.webp",
@@ -267,6 +287,9 @@ export default {
     },
   },
   methods: {
+    // contactSeller() {
+    //   // console.log("hi");
+    // },
     imageNext() {
       this.imageDir = "right";
       if (this.imageVisibleSlide >= this.imageLen - 1) {
@@ -275,6 +298,7 @@ export default {
         this.imageVisibleSlide++;
       }
     },
+
     imagePrev() {
       this.imageDir = "left";
       if (this.imageVisibleSlide < 0) {
@@ -306,4 +330,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.button {
+  @apply border border-[#44BFD7] border-opacity-30 rounded-lg px-5 py-1;
+}
+</style>

@@ -1,4 +1,4 @@
-name: Build Golang User Service
+name: Build Frontend
 
 on:
   push:
