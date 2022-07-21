@@ -109,8 +109,9 @@ export default {
                 const user_store_info = {
                   'isLoggedIn': true,
                   'username': userMap.username,
+                  'userid': login_response.data.user.id,
                   'role': 'seller',
-                  'access_token': login_response.data.access_token,
+                  'balance': login_response.data.user.wallet_balance,
                   'refresh_token': login_response.data.refresh_token
                 }
                 console.log(user_store_info)
@@ -123,9 +124,9 @@ export default {
             console.log(error)
           })
       }
-      else { // use customer/register endpoints 
+      else { // use customer/register endpoints
         customerService.register(userMap)
-          .then((register_response) => { 
+          .then((register_response) => {
             const loginMap = {
               'username': userMap.username,
               'password': userMap.password,
@@ -135,7 +136,9 @@ export default {
                 const user_store_info = {
                   'isLoggedIn': true,
                   'username': userMap.username,
+                  'userid': login_response.data.user.id,
                   'role': 'customer',
+                  'balance': login_response.data.user.wallet_balance,
                   'access_token': login_response.data.access_token,
                   'refresh_token': login_response.data.refresh_token
                 }

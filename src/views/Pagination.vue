@@ -2,8 +2,8 @@
   <div>
     <div>
       <vue-awesome-paginate
-        :total-items="50"
-        :items-per-page="5"
+        :total-items="totalItems"
+        :items-per-page="itemPerPage"
         :max-pages-shown="5"
         :current-page="1"
         :on-click="onClickHandler"
@@ -38,6 +38,10 @@ export default {
   components: {
     ChevronLeftIcon,
     ChevronRightIcon,
+  },
+  props: {
+    totalItems: Number,
+    itemPerPage: Number,
   },
   methods: {
     onClickHandler(page) {

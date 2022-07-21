@@ -8,14 +8,14 @@
       @click="index = 0"
       page="/"
     />
-    <MenuItem
-      text="My Product"
-      amount="52"
-      :isVisible="index === 1"
-      @click="index = 1"
-      page="my-product"
-    />
-    <template v-if="$store.state.isLoggedIn">
+    <template v-if="$store.state.role === 'seller'">
+      <MenuItem
+        text="My Product"
+        amount="52"
+        :isVisible="index === 1"
+        @click="index = 1"
+        page="my-product"
+      />
       <MenuItem
           text="Product Status"
           amount="52"
@@ -23,6 +23,9 @@
           @click="index = 3"
           page="pending"
       />
+
+    </template>
+    <template v-if="$store.state.role === 'customer'">
       <MenuItem
           text="Order History"
           amount="52"
@@ -32,7 +35,6 @@
       />
       <div class="border-b border-[#50555E]"></div>
       <h1>Status</h1>
-
       <MenuItem
           text="Pending"
           amount="52"
