@@ -8,8 +8,12 @@ import OrderHistory from "../views/OrderHistory";
 import SellerProfile from "../views/SellerProfile";
 import ProductEditing from "../views/ProductEditing";
 import Profile from "../views/Profile";
+import Message from "../views/Message";
+import Messages from "../views/Messages";
 import Register from "../views/Register";
 import Login from "../views/Login";
+import ProductCreation from "../views/ProductCreation";
+import SellerProduct from "@/views/SellerProduct";
 
 import store from '../store/index'
 
@@ -25,9 +29,29 @@ const routes = [
     component: Profile,
   },
   {
+    path: "/message",
+    name: "Message",
+    component: Message,
+  },
+  {
+    path: "/messages",
+    name: "Messages",
+    component: Messages,
+  },
+  {
     path: "/product-xxx",
     name: "ProductEditing",
     component: ProductEditing,
+  },
+  {
+    path: "/create-product",
+    name: "ProductCreation",
+    component: ProductCreation,
+  },
+  {
+    path: "/my-product",
+    name: "SellerProduct",
+    component: SellerProduct,
   },
   {
     path: "/",

@@ -13,3 +13,4 @@ setupInterceptors(store)
 const app = createApp(App).use(router).use(VueAwesomePaginate).use(store).use(VueAxios, axios).mount("#app")
 
 
+

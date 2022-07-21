@@ -26,6 +26,7 @@
 <script>
 // Imports
 import customerService from "@/service/customerService";
+import sellerService from "@/service/sellerService";
 import NavBar from "./views/NavBar.vue";
 import SideBar from "./views/SideBar.vue";
 // Exports
