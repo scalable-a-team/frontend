@@ -8,7 +8,8 @@ import OrderHistory from "../views/OrderHistory";
 import SellerProfile from "../views/SellerProfile";
 import ProductEditing from "../views/ProductEditing";
 import Profile from "../views/Profile";
-import Message from '../views/Message';
+import Message from "../views/Message";
+import Messages from "../views/Messages";
 const routes = [
   {
     path: "/customer-review",
@@ -24,6 +25,11 @@ const routes = [
     path: "/message",
     name: "Message",
     component: Message,
+  },
+  {
+    path: "/messages",
+    name: "Messages",
+    component: Messages,
   },
   {
     path: "/product-xxx",

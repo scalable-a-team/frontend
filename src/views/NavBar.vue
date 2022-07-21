@@ -93,7 +93,7 @@
                 />
                 <MenuItem v-slot="{ active }">
                   <a
-                    href="/message"
+                    href="/messages?sender_id=yuqi"
                     :class="[
                       active ? 'bg-gray-700 text-white' : 'text-white',
                       'block pl-10 px-4 py-2 text-sm',

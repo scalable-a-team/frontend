@@ -9,7 +9,7 @@
         <p>{{ message }}</p>
       </div>
     </div>
-    <div class="absolute right-0">{{ timestamp }}</div>
+    <div class="absolute right-0 text-gray-400">{{ timestamp }}</div>
     <!-- <p v-if="isSender">right</p> -->
   </div>
 </template>
