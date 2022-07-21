@@ -93,6 +93,8 @@ router.beforeEach(async (to,from,next)=>{
   //     console.log("You are not allowed to be here")
   //     return next({name:"Home"});
   // }
+
+  
   else{
       // Navigate to next page
       next();

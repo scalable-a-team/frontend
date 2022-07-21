@@ -43,7 +43,7 @@
           <MenuItems
             class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-[#1F2A44] ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div class="py-1">
-              <li v-for="item in $store.getters.getMenuItem" :key="item.title" router :to="item.route">
+              <div v-for="item in $store.getters.getMenuItem" :key="item.title" router :to="item.route">
                 <div class="relative">
                   <UserIcon v-if="item.title=='My Profile'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <LoginIcon v-if="item.title=='Login'" class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
@@ -56,8 +56,8 @@
                   ]">{{item.title}}</a>
                   </MenuItem>
                 </div>
-              </li>
-              <li @click.prevent="onLogout">
+              </div>
+              <div @click.prevent="onLogout">
                 <div class="relative">
                   <LogoutIcon class="h-7 w-7 text-[#37445F] absolute left-0 pl-2 flex items-center"/>
                   <MenuItem v-slot="{ active }">
@@ -67,7 +67,7 @@
                   ]">Logout</a>
                   </MenuItem>
                 </div>
-              </li>
+              </div>
             </div>
           </MenuItems>
         </transition>

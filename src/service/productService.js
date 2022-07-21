@@ -1,16 +1,6 @@
 import api from './api';
 class productService {
 
-    // {
-    //     "product": {
-    //         "product_name": "string",
-    //         "description": "string",
-    //         "price" : "float",
-    //         "tags" : ["Any array of TAG IDS!!! Get tag ids from get tags endpoint"],
-    //         "categories": ["Same as tags, get them from category endpoint"],
-    //         "image_url": ["An array of image urls that you want to attach to product"]
-    //     }
-    // }
     create_product(payload){
         const response = api.post('product/create/product/', payload)
         return response
@@ -51,6 +41,11 @@ class productService {
         return response
     }
 
+    list_products(){
+        const response = api.get('/product/es/search/?')
+        return response
+    }
+
     delete_product(pid){
         const response = api.post('product/delete/' + pid)
         return response
@@ -65,6 +60,8 @@ class productService {
         const response = api.post('product/get/' + id)
         return response
     }
+
+
 
 }
 export default new productService();
