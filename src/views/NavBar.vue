@@ -26,6 +26,9 @@
     <!-- Profile -->
     <div class="flex flex-row items-center basis-1/5 space-x-2">
       <template v-if="$store.state.isLoggedIn">
+        <div class="mr-5">
+          <p style="text-transform: uppercase; font-weight: bold">{{ $store.state.role }} ACCOUNT</p>
+        </div>
         <div class="h-16 w-16 cursor-pointer mr-5">
           <img
             src="https://img.wattpad.com/ff54a8ffdbb8a23597558f8525770d350b2d9dcc/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f52344c51585f43773230715270673d3d2d3133312e313632303361666136366566373565623134373734313533353136372e6a7067?s=fit&w=720&h=720"

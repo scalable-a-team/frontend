@@ -20,6 +20,9 @@ const store = new Vuex.Store({
         update_username(state, username){
             state.username = username;
         },
+        update_userid(state, userid){
+            state.userid = userid;
+        },
         update_user_role(state, role){
             state.role = role;
         },
@@ -35,6 +38,7 @@ const store = new Vuex.Store({
             commit("update_isLoggedIn", payload.isLoggedIn);
             commit("update_username", payload.username);
             commit("update_user_role", payload.role);
+            commit("update_userid", payload.userid);
             commit("update_access_token", payload.access_token);
             commit("update_refresh_token", payload.refresh_token);
         },
@@ -42,6 +46,7 @@ const store = new Vuex.Store({
             commit("update_isLoggedIn", false);
             commit("update_username", null);
             commit("update_user_role", null);
+            commit("update_userid", null);
             commit("update_access_token", null);
             commit("update_refresh_token", null);
         },

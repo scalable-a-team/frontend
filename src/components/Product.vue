@@ -1,25 +1,23 @@
 <template>
-  <router-link to="product-xxx">
+  <router-link to="product-xxx" :product_id="product._product_id">
     <div class="m-5 cursor-pointer">
       <!-- duration-100 ease-in hover:scale-110"> -->
       <!-- Image -->
       <div>
         <img
-          alt="no pic"
-          src="https://i.all3dp.com/wp-content/uploads/2017/10/27000303/shoe_in_printer.jpg"
-          class="h-60 w-full object-cover rounded-t-lg"
+            alt="no pic"
+            :src="product.image_url"
+            class="h-60 w-full object-cover rounded-t-lg"
         />
       </div>
       <div
-        class="bg-white rounded-b-lg h-16 flex items-center justify-between px-5 bg-gradient-to-r from-[#1A253B] to-[#3D4C76]"
+          class="bg-white rounded-b-lg h-16 flex items-center justify-between px-5 bg-gradient-to-r from-[#1A253B] to-[#3D4C76]"
       >
-        <p class="">Product Template</p>
+        <p class="">{{product.product_name}}</p>
 
         <p class="border rounded-full px-3 border-[#0C4550] bg-[#1A243A]">
-          <span class="text-[#44BFD7] text-[12px] font-semibold">25$</span>
+          <span class="text-[#44BFD7] text-[12px] font-semibold">${{product.price}}</span>
         </p>
-        <!-- Product -->
-        <!-- Price -->
       </div>
     </div>
   </router-link>
@@ -29,7 +27,7 @@
 export default {
   name: "ProductSeller",
   props: {
-    productList: Object,
+    product: Object,
   },
 };
 </script>
