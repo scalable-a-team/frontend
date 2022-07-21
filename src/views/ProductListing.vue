@@ -43,7 +43,7 @@ export default {
       productService.list_products()
       .then((response) =>{
           this.fetch_product = response.data.results
-          console.log(this.product)
+          console.log(this.fetch_product)
       }).catch((login_error) => {
           console.log(login_error)
       })

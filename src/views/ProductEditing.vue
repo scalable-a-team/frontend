@@ -118,6 +118,9 @@ export default {
     ImageCarouselSlide,
     ImageList,
   },
+  props: {
+    product_id: Object,
+  },
   data() {
     return {
       items: [0, 1, 2, 3, 4],

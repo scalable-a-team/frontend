@@ -24,8 +24,7 @@ const setup = (store) => {
       if (store.state.role == 'customer'){ //TODO: May require name changes
         if (originalConfig.url !== "user/customer/login" && err.response) {
             // Access Token was expired
-            if (err.response.status === 401 && !originalConfig._retry) {
-              originalConfig._retry = true;
+            if (err.response.status === 401 || err.response.status === 400) {
               try {
                 const rs = await axiosInstance.post("user/customer/refresh_token", {
                     refresh_token: store.state.refresh_token,
@@ -43,8 +42,7 @@ const setup = (store) => {
       if (store.state.role == 'seller'){ //TODO: May require name changes
         if (originalConfig.url !== "user/seller/login" && err.response) {
             // Access Token was expired
-            if (err.response.status === 401 && !originalConfig._retry) {
-              originalConfig._retry = true;
+            if (err.response.status === 401 || err.response.status === 400) {
               try {
                 const rs = await axiosInstance.post("user/seller/refresh_token", {
                     refresh_token: store.state.refresh_token,

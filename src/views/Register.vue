@@ -110,7 +110,7 @@ export default {
                   'isLoggedIn': true,
                   'username': userMap.username,
                   'role': 'seller',
-                  'access_token': login_response.data.access_token,
+                  'balance': login_response.data.user.wallet_balance,
                   'refresh_token': login_response.data.refresh_token
                 }
                 console.log(user_store_info)
@@ -136,6 +136,7 @@ export default {
                   'isLoggedIn': true,
                   'username': userMap.username,
                   'role': 'customer',
+                  'balance': login_response.data.user.wallet_balance,
                   'access_token': login_response.data.access_token,
                   'refresh_token': login_response.data.refresh_token
                 }
