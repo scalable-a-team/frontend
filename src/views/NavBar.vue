@@ -85,7 +85,7 @@ import {
   SearchIcon,
   UserIcon,
   InboxIcon,
-  BellIcon,
+  // BellIcon,
   LogoutIcon,
   LoginIcon
 } from "@heroicons/vue/outline";
@@ -110,11 +110,9 @@ export default {
   },
   methods:{
     async onLogout() {
-      console.log(this.$store.state.username)
       this.$store.dispatch('clearUser')
       window.localStorage.removeItem('vuex');
-      console.log(this.$store.state.username)
-      // this.$router.push("/")
+      this.$router.push("/")
     }
   }
 };
