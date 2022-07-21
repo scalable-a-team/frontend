@@ -5,12 +5,6 @@
         isSender ? 'float-right justify-end' : 'float-left'
       } w-1/2 space-x-2 themedBorder bg-[#44BFD7] relative`"
     >
-      <!-- <div :class="`flex justify-end ${isSender && 'order-last'} ml-2`">
-        <div class="h-10 w-10 cursor-pointer mr-5">
-          <img :src="image" alt="" class="rounded-full object-contain" />
-        </div>
-        <img :src="image" alt="Not found" class="h-12 w-12 rounded-full" />
-      </div> -->
       <div class="space-x-4">
         <p>{{ message }}</p>
       </div>

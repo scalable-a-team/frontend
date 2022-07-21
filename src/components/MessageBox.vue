@@ -16,10 +16,6 @@
             v-model="message"
             placeholder="Type message"
           />
-          <!-- <span class="absolute left-0 flex items-center">
-            <SearchIcon class="h-5 w-5 text-[#2F394D]" />
-          </span> -->
-          <!-- {{ searchInput }} -->
         </div>
       </div>
     </div>
@@ -43,12 +39,6 @@ export default {
     sendMessage() {
       if (this.message === "") return;
 
-      //   data = {
-      //     sender_id: this.sender_id,
-      //     receiver_id: this.receiver_id,
-      //     message: this.message,
-      //   };
-      //   console.log(data.message);
       this.socket.emit("send_message", {
         sender_id: this.sender_id,
         receiver_id: this.receiver_id,

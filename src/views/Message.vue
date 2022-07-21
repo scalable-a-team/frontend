@@ -27,17 +27,6 @@
             :receiver_id="receiver"
           ></MessageBox>
         </div>
-        <!-- <ChatBubble :isSender="1 == 1"> </ChatBubble>
-        <ChatBubble :isSender="1 == 1"> </ChatBubble> -->
-        <!-- <ChatBubble :isSender="1 == 2"> </ChatBubble>
-        <ChatBubble :isSender="1 == 2"> </ChatBubble>
-        <ChatBubble :isSender="1 == 2"> </ChatBubble> -->
-        <!-- <p>textx</p> <p>textx</p>
-        <p>textx</p>
-        <p>textx</p> -->
-        <!-- <ChatBubble :isSender="1 == 1"> </ChatBubble>
-        <ChatBubble :isSender="1 == 1"> </ChatBubble>
-        <ChatBubble :isSender="1 == 1"> </ChatBubble> -->
       </div>
     </div>
   </div>
@@ -72,78 +61,18 @@ export default {
     this.getMessages();
   },
   created() {
-    // this.socket.emit('')
     console.log(this.$route.query.sender_id);
     console.log(this.$route.query.receiver_id);
-    // this.socket = io('http://localhost:5000')
     this.receiver = this.$route.query.receiver_id;
     this.sender = this.$route.query.sender_id;
-    //  this.socket.emit('join_room',{
-    //                 username: "yuqi",
-    //                 room:1,
-    //             });// x.on
-    // this.socket.on()
     this.socket.on("receive_message", (data) => {
       console.log("new message for ya");
-      // console.log(data.sender_id);
-      // console.log(this.sender);
       this.messages.push(data);
-      // this.socketMessage += data.message;
     });
-    // this.socket.subscribe('receive_message', (data)=>{
-    //     this.socketMessage = data.message;
-    // } )
-    // this.$socket.emit('send_message');
-    // this.$socket.emit('send_message');
-    // Vue.prototype.$socket.emit('send_message');
-    // this.connection = new WebSocket('http://localhost:5000');
-    // this.connection.onopen = function(e){
-    //     console.log(e);
-    //     console.log('succesful');
-    // }
-  },
-  //   created(){
-  //     this.socket.on('send_message', (data)=> {
-  //         console.log(data);
-  //     })
-  //   },
-  //   mounted(){
-  //     this.$socket.on('connect', (data)=> {
-  //         debugger;
-  //         console.log(data);
-  //         this.$socket.emit('send_message');
-  //     })
-  //   },
-  sockets: {
-    connect() {
-      // this.socket.
-      // Fired when the socket connects.
-      console.log("connected");
-      this.isConnected = true;
-    },
-
-    disconnect() {
-      console.log("disconnected");
-      this.isConnected = false;
-    },
-
-    // Fired when the server sends something on the "messageChannel" channel.
-    receiveMessage(data) {
-      this.socketMessage = data;
-    },
   },
 
   methods: {
-    pingServer() {
-      this.socket.emit("send_message", {
-        sender_id: "yuqi",
-        receiver_id: "minnie",
-        message: "hello",
-      });
-      // Send the "pingServer" event to the server.
-    },
     getMessage(data) {
-      // console.log(data);
       this.messages.push(data);
     },
     async getMessages() {
@@ -170,12 +99,9 @@ export default {
         this.messages.push(message);
       }
       console.log(this.messages.length);
-      // console.log(data[0]);
-      // console.log(data[0]["message"]);
     },
     async joinRoom() {
       if (this.sender === undefined) return;
-      // const sender = this.$route.query.sender_id;
       const res = await fetch(
         `http://localhost:5000/api/establish_conn/${this.sender}`,
         {
@@ -191,34 +117,6 @@ export default {
       this.socket.emit("join_room", {
         username: this.sender,
         room_id: this.room_id,
-      });
-      // this.socket.emit('send_message',{
-      //             sender_id: "yuqi",
-      //             receiver_id: "minnie",
-      //             message: "hello",
-      //         });
-      // Send the "pingServer" event to the server.
-    },
-    minnie() {
-      this.socket.emit("join_room", {
-        room: 69765,
-        username: "minnie",
-      });
-      this.socket.emit("send_message", {
-        sender_id: "minnie",
-        receiver_id: "bossqi",
-        message: "from minnie",
-      });
-    },
-    bossqi() {
-      this.socket.emit("join_room", {
-        room: 88829,
-        username: "bossqi",
-      });
-      this.socket.emit("send_message", {
-        sender_id: "bossqi",
-        receiver_id: "minnie",
-        message: "from bossqi",
       });
     },
   },
