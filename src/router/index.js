@@ -13,6 +13,7 @@ import Messages from "../views/Messages";
 import Register from "../views/Register";
 import Login from "../views/Login";
 import ProductCreation from "../views/ProductCreation";
+import OrderCreation from "../views/OrderCreation";
 import SellerProduct from "@/views/SellerProduct";
 
 const routes = [
@@ -45,6 +46,11 @@ const routes = [
     path: "/create-product",
     name: "ProductCreation",
     component: ProductCreation,
+  },
+  {
+    path: "/create-order",
+    name: "OrderCreation",
+    component: OrderCreation,
   },
   {
     path: "/my-product",

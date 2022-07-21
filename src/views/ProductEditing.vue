@@ -210,7 +210,17 @@
         <h1 class="text-center text-xl mt-5">About Product</h1>
       </div>
       <div class="mt-10 w-full">
-        <div class="flex justify-end">
+        <div class="flex justify-evenly">
+          <button class="button" @click="contactSeller">
+            <router-link
+              :to="{
+                path: '/create-order',
+                query: { buyer: this.user, price: 10, productName: 'U SHOP' },
+              }"
+            >
+              Order here
+            </router-link>
+          </button>
           <button class="button" @click="contactSeller">
             <router-link
               :to="{

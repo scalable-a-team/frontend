@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="md:fixed md:left-0 md:right-0 md:ottom-24 ml-52"> -->
   <div>
     <div>
       <vue-awesome-paginate
@@ -43,7 +42,6 @@ export default {
   methods: {
     onClickHandler(page) {
       this.$emit("clicked", page);
-      // console.log(page);
     },
   },
 };

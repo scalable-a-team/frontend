@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{ this.$store.state.username }} -->
     <div v-if="this.messages_channel.length > 3">
       <div
         v-for="index in 3"
@@ -96,8 +97,10 @@ export default {
     };
   },
   created() {
-    console.log("test");
     this.getMessagesChannel();
+  },
+  mounted() {
+    console.log(this.$store.state.username);
   },
   methods: {
     onClickHandler(page) {
@@ -125,7 +128,7 @@ export default {
     async getMessagesChannel() {
       if (this.$route.query.sender_id === undefined) return;
       const res = await fetch(
-        `http://localhost:5000/api/get_messages_channel/${this.$route.query.sender_id}`,
+        `http://localhost:80/api/get_messages_channel/${this.$route.query.sender_id}`,
         {
           method: "GET",
           headers: {
