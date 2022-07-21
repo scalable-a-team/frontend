@@ -168,14 +168,20 @@ export default {
             const user_store_info = {
               isLoggedIn: true,
               username: userMap.username,
+              userid: login_response.data.user.id,
               role: "seller",
               balance: login_response.data.user.wallet_balance,
+              firstname: login_response.data.user.profile.first_name,
+              lastname: login_response.data.user.profile.last_name,
               access_token: login_response.data.access_token,
               refresh_token: login_response.data.refresh_token,
             };
             console.log(user_store_info);
             this.$store.dispatch("setLoggedInUser", user_store_info);
             this.$router.push("/");
+          })
+          .catch((login_error) => {
+            console.log(login_error);
           })
           .catch((login_error) => {
             console.log(login_error);
@@ -187,9 +193,10 @@ export default {
             const user_store_info = {
               isLoggedIn: true,
               username: userMap.username,
+              userid: login_response.data.user.id,
+              firstname: login_response.data.user.profile.first_name,
+              lastname: login_response.data.user.profile.last_name,
               role: "customer",
-              first_name: login_response.data.user.profile.first_name,
-              last_name: login_response.data.user.profile.last_name,
               balance: login_response.data.user.wallet_balance,
               access_token: login_response.data.access_token,
               refresh_token: login_response.data.refresh_token,
@@ -197,6 +204,9 @@ export default {
             console.log(user_store_info);
             this.$store.dispatch("setLoggedInUser", user_store_info);
             this.$router.push("/");
+          })
+          .catch((login_error) => {
+            console.log(login_error);
           })
           .catch((login_error) => {
             console.log(login_error);
