@@ -16,7 +16,7 @@ import ProductCreation from "../views/ProductCreation";
 import OrderCreation from "../views/OrderCreation";
 import SellerProduct from "@/views/SellerProduct";
 
-import store from '../store/index'
+import store from "../store/index";
 
 const routes = [
   {
@@ -106,14 +106,21 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to,from,next)=>{
-
-  if(to.name === "Login" && store.state.isLoggedIn){
-      console.log("You already login")
-      return next({name:"/"});
+router.beforeEach(async (to, from, next) => {
+  if (to.name === "Login" && store.state.isLoggedIn) {
+    console.log("You already login");
+    return next({ name: "ProductListing" });
   }
 
-  
+  if (
+    to.name === "SellerProduct" &&
+    store.state.isLoggedIn &&
+    store.state.role != "Customer"
+  ) {
+    console.log("You already login");
+    return next({ name: "ProductListing" });
+  }
+
   // if(to.name !== "Login" && !isLoggedIn){
   //     console.log("Please login first")
   //     return next({name:"Login"});
@@ -123,11 +130,9 @@ router.beforeEach(async (to,from,next)=>{
   //     console.log("You are not allowed to be here")
   //     return next({name:"Home"});
   // }
-
-  
-  else{
-      // Navigate to next page
-      next();
+  else {
+    // Navigate to next page
+    next();
   }
 });
 

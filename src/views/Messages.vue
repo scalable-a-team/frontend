@@ -5,7 +5,9 @@
       <div
         v-for="index in 3"
         :key="index"
-        class="flex flex-col items-center w-full"
+        :class="`flex flex-col items-center w-full ${
+          ffsdfdsf ? aff : fadsfafdsf
+        }`"
       >
         <MessageCard
           :sender_id="this.$route.query.sender_id"
@@ -136,6 +138,7 @@ export default {
           },
         }
       );
+      console.log("test");
       const data = await res.json();
       this.messages_channel = data;
       console.log(data);
