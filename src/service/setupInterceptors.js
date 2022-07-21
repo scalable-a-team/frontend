@@ -28,10 +28,10 @@ const setup = (store) => {
               originalConfig._retry = true;
               try {
                 const rs = await axiosInstance.post("user/customer/refresh_token", {
-                    refresh_token: store.state.accessToken,
+                    refresh_token: store.state.refresh_token,
                 });
-                const { accessToken } = rs.data;
-                store.dispatch('set_access_token',{access_token: accessToken})
+                const { access_token } = rs.data;
+                store.dispatch('set_access_token',{access_token: access_token})
                 return axiosInstance(originalConfig);
               } catch (_error) {
                 return Promise.reject(_error);
@@ -47,10 +47,10 @@ const setup = (store) => {
               originalConfig._retry = true;
               try {
                 const rs = await axiosInstance.post("user/seller/refresh_token", {
-                    refresh_token: store.state.accessToken,
+                    refresh_token: store.state.refresh_token,
                 });
-                const { accessToken } = rs.data;
-                store.dispatch('set_access_token',{access_token: accessToken})
+                const { access_token } = rs.data;
+                store.dispatch('set_access_token',{access_token: access_token})
                 return axiosInstance(originalConfig);
               } catch (_error) {
                 return Promise.reject(_error);
