@@ -64,6 +64,11 @@ const routes = [
     name: "ProductListing",
     component: ProductListing,
   },
+  // {
+  //   path: "/product-list",
+  //   name: "ProductListing",
+  //   component: ProductListing,
+  // },
   {
     path: "/seller-profile",
     name: "SellerProfile",

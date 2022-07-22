@@ -56,7 +56,7 @@
         <div class="w-full">
           <carousel @next="next" @prev="prev">
             <carousel-slide
-              v-for="(image, index) in this.product_info.images"
+              v-for="index in 10"
               :key="image"
               :index="index"
               :visibleSlide="visibleSlide"

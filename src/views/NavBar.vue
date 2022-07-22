@@ -10,9 +10,19 @@
     <div class="basis-1/5 mx-10">
       <div class="flex items-center justify-center">
         <div class="w-64 relative">
-          <span class="absolute inset-y-0 right-0 flex items-center pr-5">
+          <!-- {{ this.searchInput }} -->
+          <!-- @submit.prevent="performSearch" -->
+          <!-- v-on:keyup.enter="performSearch" -->
+          <button
+            @click="performSearch"
+            class="absolute inset-y-0 right-0 flex items-center pr-5"
+          >
+            <!-- <router-link to="/?query=glass"> -->
             <SearchIcon class="h-5 w-5 text-[#2F394D]" />
-          </span>
+            <!-- </router-link> -->
+            <!-- <router-view :key="$route.fullPath" @showLoading="showLoading"> -->
+            <!-- </router-view> -->
+          </button>
           <input
             type="text"
             required
@@ -162,6 +172,11 @@ export default {
     Menu,
     MenuButton,
   },
+  // watch: {
+  //   $route: function () {
+  //     this.loadData();
+  //   },
+  // },
   methods: {
     async onLogout() {
       this.$store.dispatch("clearUser");
@@ -181,23 +196,43 @@ export default {
           console.log(balance_response);
         });
     },
-
-    // async load_balance() {
-    //   if (this.$store.state.role == 'customer') {
-    //     customerService.getProfile()
-    //       .then((profile_response) => {
-    //       }).catch((profile_error) => {
-    //         console.log(profile_error)
-    //       })
-    //   } else {
-    //     sellerService.getProfile()
-    //       .then((profile_response) => {
-
-    //       }).catch((profile_error) => {
-    //         console.log(profile_error)
-    //       })
-    //   }
-    // }
+    performSearch() {
+      if (!window.location.hash) {
+        window.location.replace("/" + `?query=${this.searchInput}`);
+      }
+    },
+    async load_balance() {
+      if (this.$store.state.role == "customer") {
+        customerService
+          .getProfile()
+          .then((profile_response) => {
+            console.log(profile_response);
+            console.log(profile_response.wallet_balance);
+            this.$store.dispatch("update_user_balance", {
+              new_balance: profile_response.wallet_balance,
+            });
+          })
+          .catch((profile_error) => {
+            console.log(profile_error);
+          });
+      } else {
+        sellerService
+          .getProfile()
+          .then((profile_response) => {
+            this.$store.dispatch("update_user_balance", {
+              new_balance: profile_response.wallet_balance,
+            });
+          })
+          .catch((profile_error) => {
+            console.log(profile_error);
+          });
+      }
+    },
+  },
+  mounted() {
+    if (this.$store.state.isLoggedIn) {
+      this.load_balance();
+    }
   },
 };
 </script>
