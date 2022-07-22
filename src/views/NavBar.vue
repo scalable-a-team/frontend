@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full sticky top-0 z-50 h-32 border-b border-[#232D40] flex flex-row items-center"
+    class="w-full sticky top-0 z-50 h-32 border-b border-[#232D40] flex flex-row items-center bg-[#161F31]"
   >
     <!-- Logo -->
     <div class="basis-3/5 ml-28 cursor-pointer" @click="$router.push('/')">

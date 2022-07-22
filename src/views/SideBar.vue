@@ -3,7 +3,7 @@
     <h1>Menu</h1>
     <MenuItem
       text="Product"
-      amount="52"
+      amount="to see"
       :isVisible="index === 0"
       @click="index = 0"
       page="/"
@@ -12,17 +12,17 @@
     <template v-if="$store.state.role === 'seller'">
       <MenuItem
         text="My Product"
-        amount="52"
+        amount="to see"
         :isVisible="index === 1"
         @click="index = 1"
         page="my-product"
       />
       <MenuItem
-          text="Product Status"
-          amount="52"
-          :isVisible="index === 3 || index === 4 || index === 5"
-          @click="index = 3"
-          page="pending"
+        text="Product Status"
+        amount="to see"
+        :isVisible="index === 3 || index === 4 || index === 5"
+        @click="index = 3"
+        page="pending"
       />
       <div class="border-b border-[#50555E]"></div>
     </template>
@@ -36,20 +36,21 @@
           page="order-history"
       />
       <div class="border-b border-[#50555E]"></div>
+    </template>  
       <!-- <h1>Status</h1>
       <MenuItem
-          text="Pending"
-          amount="52"
-          :isVisible="index === 3"
-          @click="index = 3"
-          page="pending"
+        text="Pending"
+        amount="to see"
+        :isVisible="index === 3"
+        @click="index = 3"
+        page="pending"
       />
       <MenuItem
-          text="In-progress"
-          amount="52"
-          :isVisible="index === 4"
-          @click="index = 4"
-          page="in-progress"
+        text="In-progress"
+        amount="to see"
+        :isVisible="index === 4"
+        @click="index = 4"
+        page="in-progress"
       />
       <MenuItem
           text="In-transit"
@@ -58,7 +59,6 @@
           @click="index = 5"
           page="in-transit"
       /> -->
-    </template>
     <!-- <div class="flex items-center">
       <div v-if="1 === 2" class="absolute left-0 w-1 h-10 bg-[#3DABC0]"></div>
       <button

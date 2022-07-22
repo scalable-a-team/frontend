@@ -49,7 +49,7 @@ export default {
       socketMessage: "",
       receiver: null,
       sender: null,
-      socket: io("http://localhost:80", { path: "/api/chat/socket.io" }),
+      socket: io("", { path: "/api/chat/socket.io" }),
       // data: null,
       room_id: null,
     };
@@ -77,7 +77,7 @@ export default {
     },
     async getMessages() {
       const res = await fetch(
-        `http://localhost:80/api/chat/get_messages/${this.sender}/${this.receiver}`,
+        `/api/chat/get_messages/${this.sender}/${this.receiver}`,
         {
           method: "GET",
           headers: {
@@ -102,16 +102,13 @@ export default {
     },
     async joinRoom() {
       if (this.sender === undefined) return;
-      const res = await fetch(
-        `http://localhost:80/api/chat/establish_conn/${this.sender}`,
-        {
-          method: "GET",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`/api/chat/establish_conn/${this.sender}`, {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      });
       const data = await res.json();
       this.room_id = data["session_id"];
       console.log("-----");

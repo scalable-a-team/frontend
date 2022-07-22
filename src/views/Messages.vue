@@ -10,6 +10,7 @@
         }`"
       >
         <MessageCard
+          v-jf="messages_channel[3 * page + (index - 1)] !== null"
           :sender_id="this.$route.query.sender_id"
           :receiver_id="messages_channel[3 * page + (index - 1)]"
         />
@@ -130,7 +131,7 @@ export default {
     async getMessagesChannel() {
       if (this.$route.query.sender_id === undefined) return;
       const res = await fetch(
-        `http://localhost:80/api/chat/get_messages_channel/${this.$route.query.sender_id}`,
+        `/api/chat/get_messages_channel/${this.$route.query.sender_id}`,
         {
           method: "GET",
           headers: {

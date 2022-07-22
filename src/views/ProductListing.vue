@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="flex-end">
-      <Pagination @clicked="onClickHandler"/>
+      <Pagination @clicked="onClickHandler" />
     </div>
   </div>
   <!-- <div class="divide-y"> -->
@@ -26,8 +26,8 @@ export default {
   components: {
     Product,
     Pagination,
-    Product
-},
+    Product,
+  },
   props: {
     productList: Object,
   },
@@ -36,18 +36,24 @@ export default {
       console.log("test");
     },
     async onClickHandler(page) {
-      this.page = page - 1;
+      this.page = page * 10;
+      // this.page = page - 1;
       this.load_product();
     },
-    async load_product(){
-      productService.list_products()
-      .then((response) =>{
-          this.fetch_product = response.data.results
-          console.log(this.fetch_product)
-      }).catch((login_error) => {
-          console.log(login_error)
-      })
-    }
+    async load_product() {
+      // console.log(this.$route.query.query);
+      const query = this.$route.query.query;
+      // const from = this.$route.query.from;
+      productService
+        .list_products({ query: query, from: this.page })
+        .then((response) => {
+          this.fetch_product = response.data.results;
+          console.log(this.fetch_product);
+        })
+        .catch((login_error) => {
+          console.log(login_error);
+        });
+    },
   },
   mounted() {
     this.load_product();

@@ -13,7 +13,11 @@
       </div>
     </div>
     <div>
-      <Pagination @clicked="onClickHandler" item-per-page="4" :total-items="totalOrder" />
+      <Pagination
+        @clicked="onClickHandler"
+        item-per-page="4"
+        :total-items="totalOrder"
+      />
     </div>
   </div>
 </template>
@@ -21,7 +25,7 @@
 <script>
 import StatusCard from "../components/StatusCard";
 import Pagination from "./Pagination.vue";
-import api from '@/service/api';
+import api from "@/service/api";
 
 export default {
   name: "PendingApproval",
@@ -38,11 +42,12 @@ export default {
   },
   async mounted() {
     try {
-      const {data} = await api.get('order/seller/?status=pending')
-      this.orders = data.results
-      this.totalOrder = data.count
+      const { data } = await api.get("order/seller/?status=pending");
+      this.orders = data.results;
+      console.log(this.orders);
+      this.totalOrder = data.count;
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   },
   methods: {
@@ -51,34 +56,36 @@ export default {
     },
     async fetchPendingOrder(page) {
       try {
-        const {data} = await api.get(`order/seller/?status=pending?page=${page}`)
-        this.orders = data.results
-        this.totalOrder = data.count
+        const { data } = await api.get(
+          `order/seller/?status=pending?page=${page}`
+        );
+        this.orders = data.results;
+        this.totalOrder = data.count;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     async acceptOrder(uuid) {
       try {
-        const payload = {new_status: "success"}
-        await api.patch(`order/seller/${uuid}/`, payload)
-        await this.fetchPendingOrder(this.currentPage)
+        const payload = { new_status: "success" };
+        await api.patch(`order/seller/${uuid}/`, payload);
+        await this.fetchPendingOrder(this.currentPage);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     async rejectOrder(uuid) {
       try {
-        const payload = {new_status: "rejected"}
-        await api.patch(`order/seller/${uuid}/`, payload)
-        await this.fetchPendingOrder(this.currentPage)
+        const payload = { new_status: "rejected" };
+        await api.patch(`order/seller/${uuid}/`, payload);
+        await this.fetchPendingOrder(this.currentPage);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
     async onClickHandler(page) {
-      this.currentPage = page
-      await this.fetchPendingOrder(page)
+      this.currentPage = page;
+      await this.fetchPendingOrder(page);
     },
   },
 };
