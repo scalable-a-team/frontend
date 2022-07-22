@@ -10,6 +10,7 @@
         }`"
       >
         <MessageCard
+          v-jf="messages_channel[3 * page + (index - 1)] !== null"
           :sender_id="this.$route.query.sender_id"
           :receiver_id="messages_channel[3 * page + (index - 1)]"
         />
