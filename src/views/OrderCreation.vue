@@ -152,7 +152,6 @@ export default {
         });
         this.$router.push({
           path: "/",
-          //   query: { product_id: data.product._id },
         });
       } catch (e) {
         console.log(e);

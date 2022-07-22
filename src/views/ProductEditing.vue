@@ -109,7 +109,6 @@
           Description: {{ this.product_info.description }}
         </h1>
       </div>
-
       <div v-if="this.$store.state.role === 'customer'" class="mt-10 w-full">
         <div class="flex justify-evenly">
           <button class="button" @click="contactSeller">
@@ -118,8 +117,8 @@
                 path: '/create-order',
                 query: {
                   buyer: this.user,
-                  price: 10,
-                  productName: 'U SHOP',
+                  price: this.product_info.price,
+                  productName: this.product_info.product_name,
                   productId: this.product_info._id,
                 },
               }"
