@@ -4,13 +4,12 @@ class orderService {
     // Note: Axios Intercepter are being used,
     //       ["Authorization"] = Bearer + Store.Token
 
-
     query_order(payload){
-        if (payload.role === 'customer'){
-            const response = api.get(`order/buyer/?page=${payload.page}&status=${payload.status}`)
+    if (payload.status !== ''){
+            const response = api.get(`order/${payload.role}?page=${payload.page}&status=${payload.status}`)
             return response
         }
-        const response = api.get(`order/buyer/?page=${payload.page}&status=${payload.status}`)
+        const response = api.get(`order/${payload.role}?page=${payload.page}`)
         return response
     }
 

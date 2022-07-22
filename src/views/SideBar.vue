@@ -8,6 +8,7 @@
       @click="index = 0"
       page="/"
     />
+
     <template v-if="$store.state.role === 'seller'">
       <MenuItem
         text="My Product"
@@ -23,18 +24,19 @@
           @click="index = 3"
           page="pending"
       />
-
+      <div class="border-b border-[#50555E]"></div>
     </template>
+
     <template v-if="$store.state.role === 'customer'">
       <MenuItem
-          text="Order History"
+          text="My Order"
           amount="52"
-          :isVisible="index === 2"
-          @click="index = 2"
+          :isVisible="index === 1"
+          @click="index = 1"
           page="order-history"
       />
       <div class="border-b border-[#50555E]"></div>
-      <h1>Status</h1>
+      <!-- <h1>Status</h1>
       <MenuItem
           text="Pending"
           amount="52"
@@ -55,7 +57,7 @@
           :isVisible="index === 5"
           @click="index = 5"
           page="in-transit"
-      />
+      /> -->
     </template>
     <!-- <div class="flex items-center">
       <div v-if="1 === 2" class="absolute left-0 w-1 h-10 bg-[#3DABC0]"></div>
