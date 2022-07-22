@@ -4,23 +4,21 @@
     <div class="border-b border-[#44BFD7] border-opacity-20 py-5 g-white">
       <div>
         <div>
-          <h1>Mike Wheeler</h1>
-          <h2>Description</h2>
+          <h1>{{ order.seller_id }}</h1>
+          <h2>{{ order.description_text }}</h2>
         </div>
       </div>
     </div>
     <div>
       <div class="flex items-center m-5 space-x-5">
         <div class="space-y-10 w-1/5">
-          <h2>Type of Job</h2>
-
+          <h2>Status</h2>
           <h2>Amount</h2>
-
           <h2>Dimension</h2>
         </div>
         <div class="w-full space-y-5">
           <div class="border border-[#2F394D] h-12 rounded-md">
-            <p class="mx-2 my-1">{{ order.description_text }}</p>
+            <p class="mx-2 my-1">{{ order.status }}</p>
           </div>
           <div class="border border-[#2F394D] h-12 rounded-md">
             <p class="mx-2 my-1">{{ order.total_incl_tax }}</p>
@@ -29,24 +27,20 @@
             <p class="mx-2 my-1">{{ order.dimension_text }}</p>
           </div>
         </div>
-        <!-- <div class="flex m-5 space-x-5">
-          <h2>Type of Job</h2>
-          <div class="border border-[#2F394D] h-12 w-3/4 rounded-md">
-            <p class="mx-2 my-1">test</p>
+        <div class="w-full space-y-5">
+          <h2>Created At</h2>
+          <div class="border border-[#2F394D] h-12 rounded-md">
+            <p class="mx-2 my-1">{{ order.created_at }}</p>
+          </div>
+          <h2>Date Shipped</h2>
+          <div class="border border-[#2F394D] h-12 rounded-md">
+            <p class="mx-2 my-1">{{ order.date_shipped }}</p>
+          </div>
+          <h2>uuid</h2>
+          <div class="border border-[#2F394D] h-12 rounded-md">
+            <p class="mx-2 my-1">{{ order.uuid }}</p>
           </div>
         </div>
-        <div class="flex m-5 space-x-5">
-          <h2>Amount</h2>
-          <div class="border border-[#2F394D] h-12 w-3/4 rounded-md">
-            <p class="mx-2 my-1">test</p>
-          </div>
-        </div>
-        <div class="flex m-5 space-x-5">
-          <h2>Dimension</h2>
-          <div class="border border-[#2F394D] h-12 w-3/4 rounded-md">
-            <p class="mx-2 my-1">test</p>
-          </div>
-        </div> -->
       </div>
       <div v-if="disable" class="flex justify-center space-x-12">
         <button class="button" @click="acceptOrder" >Submit</button>
