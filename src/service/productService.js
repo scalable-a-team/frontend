@@ -45,6 +45,8 @@ class productService {
     const response = api.get("/product/es/search/?", {
       params: {
         query: payload.query,
+        from: payload.from,
+        size: payload.size,
       },
     });
     return response;

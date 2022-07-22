@@ -36,13 +36,16 @@ export default {
       console.log("test");
     },
     async onClickHandler(page) {
-      this.page = page - 1;
+      this.page = page * 10;
+      // this.page = page - 1;
       this.load_product();
     },
     async load_product() {
-      console.log(tihs.$route.query.query);
+      // console.log(this.$route.query.query);
+      const query = this.$route.query.query;
+      // const from = this.$route.query.from;
       productService
-        .list_products({ query: this.$route.query })
+        .list_products({ query: query, from: this.page })
         .then((response) => {
           this.fetch_product = response.data.results;
           console.log(this.fetch_product);
